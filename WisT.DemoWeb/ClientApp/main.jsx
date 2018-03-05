@@ -1,6 +1,7 @@
 import './css/site.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import HelloWorld from './Components/Greeting'
+import HelloWorld from './components/Greeting'
+import WebCam from './components/Webcam'
 
-ReactDOM.render(<HelloWorld />, document.getElementById('app'))
+ReactDOM.render(<WebCam />, document.getElementById('app'))

@@ -21,10 +21,11 @@ module.exports = (env) => {
                     test: /.jsx?$/,
                     loader: 'babel-loader',
                     exclude: /node-modules/,
-                    query: {
-                        presets: ['react', 'es2015', 'stage-1'],
+                    options: {
+                        babelrc: false,
+                        presets: ['react', 'es2015', 'stage-0'],
                         plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
-                    }
+                    },
                 },
                 { test: /\.tsx?$/, include: /ClientApp/, use: 'awesome-typescript-loader?silent=true' },
                 { test: /\.css$/, use: isDevBuild ? ['style-loader', 'css-loader'] : ExtractTextPlugin.extract({ use: 'css-loader?minimize' }) },

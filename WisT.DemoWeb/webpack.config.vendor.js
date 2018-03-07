@@ -8,12 +8,12 @@ module.exports = (env) => {
     return [{
         stats: { modules: false },
         resolve: {
-            extensions: [ '.js' ]
+            extensions: ['.js']
         },
         module: {
             rules: [
                 { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' },
-                { test: /\.css(\?|$)/, use: extractCSS.extract([ isDevBuild ? 'css-loader' : 'css-loader?minimize' ]) }
+                { test: /\.css(\?|$)/, use: extractCSS.extract([isDevBuild ? 'css-loader' : 'css-loader?minimize']) }
             ]
         },
         entry: {

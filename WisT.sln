@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.API", "WisT.De
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.Persistence", "WisT.DemoWeb.Persistence\WisT.DemoWeb.Persistence.csproj", "{657F6DED-146F-4054-8E1C-2CA0E9A77504}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.Recognizer.Contracts", "Recognizer\WisT.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj", "{265D7A45-402D-4779-8D7C-4EB6CBAC86BD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recognizer", "Recognizer", "{980E2F88-D962-4B31-8F44-E934B0B846A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.Recognizer", "Recognizer\WisT.Recognizer\WisT.Recognizer.csproj", "{FBCFD3E6-DB4B-47C3-BCA6-D0E327F21775}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wist.Recognizer.Contracts", "Recognizer\Wist.Recognizer.Contracts\Wist.Recognizer.Contracts.csproj", "{A7E46900-A6E2-4718-B1DA-41B5E52A6299}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wist.Recognizer", "Recognizer\Wist.Recognizer\Wist.Recognizer.csproj", "{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,21 +33,21 @@ Global
 		{657F6DED-146F-4054-8E1C-2CA0E9A77504}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{657F6DED-146F-4054-8E1C-2CA0E9A77504}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{657F6DED-146F-4054-8E1C-2CA0E9A77504}.Release|Any CPU.Build.0 = Release|Any CPU
-		{265D7A45-402D-4779-8D7C-4EB6CBAC86BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{265D7A45-402D-4779-8D7C-4EB6CBAC86BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{265D7A45-402D-4779-8D7C-4EB6CBAC86BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{265D7A45-402D-4779-8D7C-4EB6CBAC86BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FBCFD3E6-DB4B-47C3-BCA6-D0E327F21775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBCFD3E6-DB4B-47C3-BCA6-D0E327F21775}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBCFD3E6-DB4B-47C3-BCA6-D0E327F21775}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBCFD3E6-DB4B-47C3-BCA6-D0E327F21775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7E46900-A6E2-4718-B1DA-41B5E52A6299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E46900-A6E2-4718-B1DA-41B5E52A6299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E46900-A6E2-4718-B1DA-41B5E52A6299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E46900-A6E2-4718-B1DA-41B5E52A6299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{265D7A45-402D-4779-8D7C-4EB6CBAC86BD} = {980E2F88-D962-4B31-8F44-E934B0B846A5}
-		{FBCFD3E6-DB4B-47C3-BCA6-D0E327F21775} = {980E2F88-D962-4B31-8F44-E934B0B846A5}
+		{A7E46900-A6E2-4718-B1DA-41B5E52A6299} = {980E2F88-D962-4B31-8F44-E934B0B846A5}
+		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85} = {980E2F88-D962-4B31-8F44-E934B0B846A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CB98EE5-EFFD-4083-B0A6-E4282B9747A0}

@@ -1,0 +1,7 @@
+﻿
+namespace WisTRecogniazer
+{
+    class Program
+    {
+    }
+}

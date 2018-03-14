@@ -1,5 +1,5 @@
 ﻿using System;
-using ValidationLLD;
+using WistRecognizerContracts;
 
 namespace WisTRecogniazer
 {

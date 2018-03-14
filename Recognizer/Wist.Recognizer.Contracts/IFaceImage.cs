@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 
 
-namespace ValidationLLD
+namespace WistRecognizerContracts
 {
     public interface IFaceImage
     {

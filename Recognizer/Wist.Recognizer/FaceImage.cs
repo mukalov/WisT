@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using ValidationLLD;
+using WistRecognizerContracts;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;

@@ -1,20 +1,20 @@
 ﻿using System;
-using ValidationLLD;
+using WistRecognizerContracts;
 
 namespace WisTRecogniazer
 {
     public class Label : ILabel
     {
         public string Name { get; }
-        public IIdentifier ID {
+        public IIdentifier Id {
                 get {
-                    if (ID == null)
-                        throw new Exception("ID is not initialized");
+                    if (Id == null)
+                        throw new Exception("Id is not initialized");
                     else
-                    return ID;
+                    return Id;
                 }
                 set {
-                    ID = value;
+                    Id = value;
                 }
             }
 

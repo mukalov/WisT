@@ -1,8 +1,8 @@
-﻿namespace ValidationLLD
+﻿namespace WistRecognizerContracts
 {
      public interface ILabel
     {
         string Name { get; }               
-        IIdentifier ID { get; set; }
+        IIdentifier Id { get; set; }
     }
 }

@@ -1,17 +1,17 @@
-﻿namespace ValidationLLD
+﻿using System.Collections;
+
+namespace WistRecognizerContracts
 {
     public interface ILabelStorage : IRepository<IIdentifier, ILabel>
     {
         int SizeOfDataBase { get; }
 
-        void Add(ILabel add_obj);
+        void Add(ILabel addObj);
 
         void Delete(IIdentifier id);
 
-        ILabel[] GetAll();
+        IEnumerable GetAll();
 
         ILabel Get(IIdentifier id);
-
-        //ILabel Get(int index);
     }
 }

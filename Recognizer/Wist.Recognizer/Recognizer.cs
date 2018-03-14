@@ -5,10 +5,7 @@ using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ValidationLLD;
-
+using WistRecognizerContracts;
 
 namespace DTRecognizer
 {
@@ -19,7 +16,7 @@ namespace DTRecognizer
 
         public ILabel GetIdentity(IFaceImage img)
         {
-            var labels = _labelDB.GetAll();
+            var labels = (List<ILabel>)_labelDB.GetAll();
             List<string> names = new List<string>();
             float distance;
             MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
@@ -27,15 +24,15 @@ namespace DTRecognizer
 
             var index = 0;
             float min = 0;
-            for (int i = 0; i < labels.Length; i++)
+            for (int i = 0; i < labels.Count; i++)
             {
-                var currenImages = _imageDB.Get(labels[i].ID);
+                var currenImages = (List<IFaceImage>)_imageDB.Get(labels[i].Id);
                 foreach(var current in currenImages)
                 {
                     trainingFaces.Add(new Image<Gray, Byte>(current.ImageOfFace));
                 }
 
-                MCvTermCriteria termCrit = new MCvTermCriteria(currenImages.Length, 0.0001);
+                MCvTermCriteria termCrit = new MCvTermCriteria(currenImages.Count, 0.0001);
                 var recognizer = new WisTRecogniazer.EigenObjectRecognizer(trainingFaces.ToArray(), ref termCrit);
                 float[] avarageDist = recognizer.GetEigenDistances(new Image<Gray, Byte>(img.ImageOfFace));
 

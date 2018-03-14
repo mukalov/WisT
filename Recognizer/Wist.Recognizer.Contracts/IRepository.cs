@@ -1,8 +1,8 @@
-﻿namespace ValidationLLD
+﻿namespace WistRecognizerContracts
 {
     public interface IRepository<KeyT, EntityT>
     { 
-        void Add(EntityT add_obj);
+        void Add(EntityT addObj);
 
         void Delete(KeyT id);
 

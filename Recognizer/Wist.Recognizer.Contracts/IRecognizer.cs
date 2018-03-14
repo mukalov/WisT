@@ -1,4 +1,4 @@
-﻿namespace ValidationLLD
+﻿namespace WistRecognizerContracts
 {
     public interface IRecognizer
     {

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 
-namespace WistRecognizerContracts
+namespace Wist.Recognizer.Contracts
 {
     public interface IImageStorage : IRepository<IIdentifier, IFaceImage>
     {
@@ -11,6 +10,6 @@ namespace WistRecognizerContracts
 
         void Delete(IIdentifier id);
 
-        IEnumerable Get(IIdentifier id);
+        IEnumerable<IFaceImage> Get(IIdentifier id);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace WistRecognizerContracts
+﻿namespace Wist.Recognizer.Contracts
 {
      public interface ILabel
     {

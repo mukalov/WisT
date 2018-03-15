@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 
-namespace WistRecognizerContracts
+namespace Wist.Recognizer.Contracts
 {
     public interface ILabelStorage : IRepository<IIdentifier, ILabel>
     {
@@ -10,7 +10,7 @@ namespace WistRecognizerContracts
 
         void Delete(IIdentifier id);
 
-        IEnumerable GetAll();
+        IEnumerable<ILabel> GetAll();
 
         ILabel Get(IIdentifier id);
     }

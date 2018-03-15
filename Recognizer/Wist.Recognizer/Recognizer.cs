@@ -1,11 +1,10 @@
-﻿using WisTRecogniazer;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WistRecognizerContracts;
+using Wist.Recognizer.Contracts;
 
 namespace DTRecognizer
 {
@@ -16,7 +15,7 @@ namespace DTRecognizer
 
         public ILabel GetIdentity(IFaceImage img)
         {
-            var labels = (List<ILabel>)_labelDB.GetAll();
+            var labels = _labelDB.GetAll();
             List<string> names = new List<string>();
             float distance;
             MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
@@ -24,15 +23,15 @@ namespace DTRecognizer
 
             var index = 0;
             float min = 0;
-            for (int i = 0; i < labels.Count; i++)
+            for (int i = 0; i < labels.Count(); i++)
             {
-                var currenImages = (List<IFaceImage>)_imageDB.Get(labels[i].Id);
+                var currenImages = _imageDB.Get(labels.ElementAt(i).Id);
                 foreach(var current in currenImages)
                 {
                     trainingFaces.Add(new Image<Gray, Byte>(current.ImageOfFace));
                 }
 
-                MCvTermCriteria termCrit = new MCvTermCriteria(currenImages.Count, 0.0001);
+                MCvTermCriteria termCrit = new MCvTermCriteria(currenImages.Count(), 0.0001);
                 var recognizer = new WisTRecogniazer.EigenObjectRecognizer(trainingFaces.ToArray(), ref termCrit);
                 float[] avarageDist = recognizer.GetEigenDistances(new Image<Gray, Byte>(img.ImageOfFace));
 
@@ -46,7 +45,7 @@ namespace DTRecognizer
                 }
             }
 
-            return labels[index];
+            return labels.ElementAt(index);
         }
     }
 }

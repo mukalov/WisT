@@ -1,5 +1,5 @@
 ﻿using System;
-using WistRecognizerContracts;
+using Wist.Recognizer.Contracts;
 
 namespace WisTRecogniazer
 {

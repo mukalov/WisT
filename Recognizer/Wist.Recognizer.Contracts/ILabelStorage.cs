@@ -4,8 +4,6 @@ namespace Wist.Recognizer.Contracts
 {
     public interface ILabelStorage : IRepository<IIdentifier, ILabel>
     {
-        int SizeOfDataBase { get; }
-
         void Add(ILabel addObj);
 
         void Delete(IIdentifier id);

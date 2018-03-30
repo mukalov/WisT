@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wist.Recognizer.Contracts",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wist.Recognizer", "Recognizer\Wist.Recognizer\Wist.Recognizer.csproj", "{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{6C4FFE61-4B6B-4FC5-9DC5-91D4242B8B1F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

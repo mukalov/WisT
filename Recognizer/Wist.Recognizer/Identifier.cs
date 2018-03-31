@@ -11,7 +11,7 @@ namespace WisTRecogniazer
         {
             this.IdentifingCode = IdentifingCode;
         }
-        
+
         public override bool Equals(Object obj)
         {
             if (obj == null)

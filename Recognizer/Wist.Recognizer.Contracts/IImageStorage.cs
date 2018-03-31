@@ -4,7 +4,7 @@ namespace Wist.Recognizer.Contracts
 {
     public interface IImageStorage : IRepository<IIdentifier, IFaceImage>
     {
-        void Add(IFaceImage addObj);
+        void Add(IEnumerable<IFaceImage> addObj);
 
         void Delete(IIdentifier id);
 

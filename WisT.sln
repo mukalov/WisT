@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.Persistence", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recognizer", "Recognizer", "{980E2F88-D962-4B31-8F44-E934B0B846A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wist.Recognizer.Contracts", "Recognizer\Wist.Recognizer.Contracts\Wist.Recognizer.Contracts.csproj", "{A7E46900-A6E2-4718-B1DA-41B5E52A6299}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.Recognizer.Contracts", "Recognizer\Wist.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj", "{A7E46900-A6E2-4718-B1DA-41B5E52A6299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wist.Recognizer", "Recognizer\Wist.Recognizer\Wist.Recognizer.csproj", "{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WistT.Recognizer", "Recognizer\Wist.Recognizer\WistT.Recognizer.csproj", "{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

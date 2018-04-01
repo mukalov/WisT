@@ -1,7 +1,7 @@
 ﻿using System;
-using Wist.Recognizer.Contracts;
+using WisT.Recognizer.Contracts;
 
-namespace WisTRecogniazer
+namespace WisT.Recogniazer
 {
     public class Label : ILabel
     {

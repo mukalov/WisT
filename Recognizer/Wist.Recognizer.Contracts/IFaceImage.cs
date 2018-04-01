@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 
 
-namespace Wist.Recognizer.Contracts
+namespace WisT.Recognizer.Contracts
 {
     public interface IFaceImage
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wist.Recognizer.Contracts
+namespace WisT.Recognizer.Contracts
 {
     public interface ILabelStorage : IRepository<IIdentifier, ILabel>
     {

@@ -79,9 +79,9 @@
     <Compile Include="Recognizer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wist.Recognizer.Contracts\Wist.Recognizer.Contracts.csproj">
+    <ProjectReference Include="..\Wist.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj">
       <Project>{a7e46900-a6e2-4718-b1da-41b5e52a6299}</Project>
-      <Name>Wist.Recognizer.Contracts</Name>
+      <Name>WisT.Recognizer.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

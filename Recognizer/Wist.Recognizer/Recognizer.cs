@@ -4,9 +4,9 @@ using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Wist.Recognizer.Contracts;
+using WisT.Recognizer.Contracts;
 
-namespace DTRecognizer
+namespace WisT.Recognizer
 {
     public class Recognizer : IRecognizer
     {
@@ -32,7 +32,7 @@ namespace DTRecognizer
                 }
 
                 MCvTermCriteria termCrit = new MCvTermCriteria(currenImages.Count(), 0.0001);
-                var recognizer = new WisTRecogniazer.EigenObjectRecognizer(trainingFaces.ToArray(), ref termCrit);
+                var recognizer = new WisT.Recogniazer.EigenObjectRecognizer(trainingFaces.ToArray(), ref termCrit);
                 float[] avarageDist = recognizer.GetEigenDistances(new Image<Gray, Byte>(img.ImageOfFace));
 
                 //distance = avarageDist.Sum() / avarageDist.Length; //TO TEST

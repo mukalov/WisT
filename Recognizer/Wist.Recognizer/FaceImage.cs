@@ -5,7 +5,7 @@ using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 
-namespace WisT.Recogniazer
+namespace WisT.Recognizer.Identifier
 {
     public class FaceImage : IFaceImage
     {

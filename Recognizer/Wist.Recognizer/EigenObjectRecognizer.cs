@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Emgu.CV.Structure;
 using Emgu.CV;
 
-namespace WisT.Recogniazer
+namespace WisT.Recognizer.Identifier
 {
    /// <summary>
    /// An object recognizer using PCA (Principle Components Analysis)

@@ -1,7 +1,7 @@
 ﻿using System;
 using WisT.Recognizer.Contracts;
 
-namespace WisT.Recogniazer
+namespace WisT.Recognizer.Identifier
 {
     public class Identifier : IIdentifier
     {

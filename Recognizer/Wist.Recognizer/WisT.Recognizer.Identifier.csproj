@@ -8,8 +8,8 @@
     <ProjectGuid>{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wist.Recognizer</RootNamespace>
-    <AssemblyName>Wist.Recognizer</AssemblyName>
+    <RootNamespace>WisT.Recognizer.Identifier</RootNamespace>
+    <AssemblyName>WisT.Recognizer.Identifier</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WisT.Recognizer.Contracts;
 
-namespace WisT.Recognizer
+namespace WisT.Recognizer.Identifier
 {
     public class Recognizer : IRecognizer
     {
@@ -32,7 +32,7 @@ namespace WisT.Recognizer
                 }
 
                 MCvTermCriteria termCrit = new MCvTermCriteria(currenImages.Count(), 0.0001);
-                var recognizer = new WisT.Recogniazer.EigenObjectRecognizer(trainingFaces.ToArray(), ref termCrit);
+                var recognizer = new EigenObjectRecognizer(trainingFaces.ToArray(), ref termCrit);
                 float[] avarageDist = recognizer.GetEigenDistances(new Image<Gray, Byte>(img.ImageOfFace));
 
                 //distance = avarageDist.Sum() / avarageDist.Length; //TO TEST

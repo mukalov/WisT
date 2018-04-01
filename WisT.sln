@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb", "WisT.DemoWe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.API", "WisT.DemoWeb.API\WisT.DemoWeb.API.csproj", "{3C5256B4-3BD4-4279-88B9-41AB32D06503}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.DemoWeb.Persistence", "WisT.DemoWeb.Persistence\WisT.DemoWeb.Persistence.csproj", "{657F6DED-146F-4054-8E1C-2CA0E9A77504}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.Persistence", "WisT.DemoWeb.Persistence\WisT.DemoWeb.Persistence.csproj", "{657F6DED-146F-4054-8E1C-2CA0E9A77504}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

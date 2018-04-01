@@ -12,6 +12,8 @@ namespace WisT.Recognizer.Identifier
     {
         private ILabelStorage _labelDB;
         private IImageStorage _imageDB;
+        
+        //TO DO
 
         public ILabel GetIdentity(IFaceImage img)
         {

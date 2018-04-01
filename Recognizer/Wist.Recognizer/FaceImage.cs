@@ -18,10 +18,12 @@ namespace WisT.Recognizer.Identifier
             HaarCascade faceCascade = new HaarCascade("haarcascade_frontalface_alt_tree.xml");
 
             var Face = trainingImage.DetectHaarCascade(faceCascade)[0];
-            Image<Gray, Byte> detectedFace = trainingImage.Copy(Face[0].rect).Resize(200, 150, INTER.CV_INTER_LINEAR);
+            Image<Gray, Byte> detectedFace = trainingImage.Copy(Face[0].rect).Resize(_faceHeight, _faceWeight, INTER.CV_INTER_LINEAR);
 
             ImageOfFace = detectedFace.Bitmap;
         }
 
+        private const int _faceHeight = 200;
+        private const int _faceWeight = 150;
     }
 }

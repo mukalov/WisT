@@ -15,9 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.Recognizer.Contracts",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.Recognizer.Identifier", "Recognizer\Wist.Recognizer\WisT.Recognizer.Identifier.csproj", "{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.Recognizer.IdentifierTests", "Recognizer\WisT.Recognizer.IdentifierTests\WisT.Recognizer.IdentifierTests.csproj", "{98470986-7EEF-4EA4-BE8E-CB032535E6B0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{BE8AD04C-A2DE-429F-8D23-A522843A0D4E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.Tests", "Recognizer\WisT.Tests\WisT.Tests.csproj", "{DA89DAF6-F736-471D-84B6-1F510EDD06D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +43,10 @@ Global
 		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98470986-7EEF-4EA4-BE8E-CB032535E6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98470986-7EEF-4EA4-BE8E-CB032535E6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98470986-7EEF-4EA4-BE8E-CB032535E6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98470986-7EEF-4EA4-BE8E-CB032535E6B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA89DAF6-F736-471D-84B6-1F510EDD06D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA89DAF6-F736-471D-84B6-1F510EDD06D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA89DAF6-F736-471D-84B6-1F510EDD06D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA89DAF6-F736-471D-84B6-1F510EDD06D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,7 +54,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A7E46900-A6E2-4718-B1DA-41B5E52A6299} = {980E2F88-D962-4B31-8F44-E934B0B846A5}
 		{B0490B4F-EFA7-4662-A73E-27AFC5A04E85} = {980E2F88-D962-4B31-8F44-E934B0B846A5}
-		{98470986-7EEF-4EA4-BE8E-CB032535E6B0} = {BE8AD04C-A2DE-429F-8D23-A522843A0D4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CB98EE5-EFFD-4083-B0A6-E4282B9747A0}

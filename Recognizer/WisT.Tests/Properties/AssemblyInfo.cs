@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WisT.Recognizer.IdentifierTests")]
+[assembly: AssemblyTitle("WisT.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("WisT.Recognizer.IdentifierTests")]
+[assembly: AssemblyProduct("WisT.Tests")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("98470986-7eef-4ea4-be8e-cb032535e6b0")]
+[assembly: Guid("da89daf6-f736-471d-84b6-1f510edd06d2")]
 
 // Version information for an assembly consists of the following four values:
 //

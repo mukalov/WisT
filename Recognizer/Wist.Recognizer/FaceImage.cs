@@ -3,6 +3,7 @@ using System.Drawing;
 using WisT.Recognizer.Contracts;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using System.IO;
 
 namespace WisT.Recognizer.Identifier
 {
@@ -18,7 +19,9 @@ namespace WisT.Recognizer.Identifier
 
         private Bitmap DetectFace(Bitmap img)
         {
-            string path = System.IO.Directory.GetCurrentDirectory();
+          
+
+            string path = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\WisT.Recognizer\bin\Debug";
             Image<Gray, Byte> detectionImage = new Image<Gray, Byte>(img);
 
             CascadeClassifier _cascadeClassifier = new CascadeClassifier(path + @"\haarcascade_frontalface_alt_tree.xml");

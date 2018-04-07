@@ -1,7 +1,9 @@
-﻿namespace WisT.Recognizer.Contracts
+﻿using System.Collections.Generic;
+
+namespace WisT.Recognizer.Contracts
 {
     public interface IRecognizer
     {
-        ILabel GetIdentity(IFaceImage img);
+        double GetComparison(IFaceImage img, IEnumerable<IFaceImage> batch);
     }
 }

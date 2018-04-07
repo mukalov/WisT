@@ -1,53 +1,43 @@
 ﻿using Emgu.CV;
-using Emgu.CV.CvEnum;
+using Emgu.CV.Face;
 using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Unity;
 using WisT.Recognizer.Contracts;
+using static Emgu.CV.Face.FaceRecognizer;
 
 namespace WisT.Recognizer.Identifier
 {
     public class Recognizer : IRecognizer
     {
-        private ILabelStorage _labelDB;
-        private IImageStorage _imageDB;
-        
-        //TO DO
+        private UnityContainer Container;
 
-        public ILabel GetIdentity(IFaceImage img)
+        public Recognizer()
         {
-            var labels = _labelDB.GetAll();
-            List<string> names = new List<string>();
-            float distance;
-            MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
-            List<Image<Gray, Byte>> trainingFaces = new List<Image<Gray, Byte>>();
+            Container = new UnityContainer();
+            Container.RegisterType(typeof(IFaceImage), typeof(FaceImage));
+        }
 
-            var index = 0;
-            float min = 0;
-            for (int i = 0; i < labels.Count(); i++)
+        public double GetComparison(IFaceImage img, IEnumerable<IFaceImage> batch)
+        {
+            FaceRecognizer recognizer = new EigenFaceRecognizer(80, double.PositiveInfinity);
+            List<Image<Gray, Byte>> compBatch = new List<Image<Gray, Byte>>();
+            List<int> labels = new List<int>();
+
+            foreach (IFaceImage current in batch)
             {
-                var currenImages = _imageDB.Get(labels.ElementAt(i).Id);
-                foreach(var current in currenImages)
-                {
-                    trainingFaces.Add(new Image<Gray, Byte>(current.ImageOfFace));
-                }
-
-                MCvTermCriteria termCrit = new MCvTermCriteria(currenImages.Count(), 0.0001);
-                var recognizer = new EigenObjectRecognizer(trainingFaces.ToArray(), ref termCrit);
-                float[] avarageDist = recognizer.GetEigenDistances(new Image<Gray, Byte>(img.ImageOfFace));
-
-                //distance = avarageDist.Sum() / avarageDist.Length; //TO TEST
-                distance = avarageDist.Min();
-
-                if (distance < min)
-                {
-                    min = distance;
-                    index = i;
-                }
+                compBatch.Add(new Image<Gray, Byte>(current.ImageOfFace));
+                labels.Add(current.Id.IdentifingCode);
             }
 
-            return labels.ElementAt(index);
+            recognizer.Train(compBatch.ToArray(), labels.ToArray());
+            
+            PredictionResult result = recognizer.Predict(new Image<Gray, Byte>(img.ImageOfFace));
+
+            return result.Distance;
         }
+
+
     }
 }

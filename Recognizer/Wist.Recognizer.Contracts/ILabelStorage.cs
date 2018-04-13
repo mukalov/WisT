@@ -2,7 +2,7 @@
 
 namespace WisT.Recognizer.Contracts
 {
-    public interface ILabelStorage : IRepository<IIdentifier, ILabel>
+    public interface ILabelStorage
     {
         void Add(ILabel addObj);
 

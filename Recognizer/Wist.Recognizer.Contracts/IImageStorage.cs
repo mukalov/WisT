@@ -2,7 +2,7 @@
 
 namespace WisT.Recognizer.Contracts
 {
-    public interface IImageStorage : IRepository<IIdentifier, IFaceImage>
+    public interface IImageStorage 
     {
         void Add(IEnumerable<IFaceImage> addObj);
 

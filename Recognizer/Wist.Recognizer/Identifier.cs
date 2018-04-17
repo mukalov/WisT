@@ -19,10 +19,10 @@ namespace WisT.Recognizer.Identifier
 
             Identifier id = obj as Identifier;
 
-            if ((Object)id == null)
+            if (id == null)
                 return false;
 
-            return (id.IdentifingCode == this.IdentifingCode);
+            return (id.IdentifingCode == IdentifingCode);
         }
 
         public override int GetHashCode()

@@ -12,26 +12,19 @@ namespace WisT.Recognizer.Identifier
         public Bitmap ImageOfFace { get; set; }
         public IIdentifier Id { get; set; }
 
-        public FaceImage(Bitmap img)
+        public FaceImage(Bitmap img, string path_haar)
         {        
-            ImageOfFace = new Bitmap(DetectFace(img), new Size(_faceHeight, _faceWeight));
+            ImageOfFace = new Bitmap(DetectFace(img, path_haar), new Size(_faceHeight, _faceWeight));
         }
 
-        private Bitmap DetectFace(Bitmap img)
+        private Bitmap DetectFace(Bitmap img, string path_haar)
         {
-          
-
-            string path = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\WisT.Recognizer\bin\Debug";
             Image<Gray, Byte> detectionImage = new Image<Gray, Byte>(img);
 
-            CascadeClassifier _cascadeClassifier = new CascadeClassifier(path + @"\haarcascade_frontalface_alt_tree.xml");
-            var Face = _cascadeClassifier.DetectMultiScale(detectionImage/*, 1.1, 10, new Size(20, 20)*/);
+            String str = Directory.GetCurrentDirectory();
 
-            if (Face.Length == 0) // using enother cascade classifier
-            {
-                _cascadeClassifier = new CascadeClassifier(path + @"\haarcascade_frontalface_default.xml");
-                Face = _cascadeClassifier.DetectMultiScale(detectionImage/*, 1.1, 10, new Size(20, 20)*/);
-            }
+            CascadeClassifier  _cascadeClassifier = new CascadeClassifier(path_haar);
+            var Face = _cascadeClassifier.DetectMultiScale(detectionImage);
 
             if (Face.Length == 0) 
             {

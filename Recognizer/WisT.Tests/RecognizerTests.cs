@@ -30,7 +30,7 @@ namespace WisT.Recognizer.Identifier.Tests
 
         [TestMethod()]
         public void Test2()
-        {;
+        {
             FaceImage _testImage;
             LabelStorageMock _labelRepo;
             ImageStorageMock _imageRepo;

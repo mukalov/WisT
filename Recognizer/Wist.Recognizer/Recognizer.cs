@@ -13,6 +13,7 @@ namespace WisT.Recognizer.Identifier
     {
         private IImageStorage _imgRepo;
         private ILabelStorage _labelRepo;
+
         public Recognizer(IImageStorage imgRepo, ILabelStorage labelRepo)
         {
             _imgRepo = imgRepo;
@@ -26,7 +27,7 @@ namespace WisT.Recognizer.Identifier
             var labels = _labelRepo.GetAll();
             foreach (var label in labels)
             {
-                var batch = _imgRepo.Get(label.Id);
+                IEnumerable<IFaceImage> batch = _imgRepo.Get(label.Id);
                 List<Image<Gray, Byte>> compBatch = new List<Image<Gray, Byte>>();
                 List<int> trainingLabels = new List<int>();
 

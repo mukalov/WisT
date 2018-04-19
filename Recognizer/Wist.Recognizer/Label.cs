@@ -5,16 +5,18 @@ namespace WisT.Recognizer.Identifier
 {
     public class Label : ILabel
     {
-        public string Name { get; }
+        private IIdentifier _id;
+
+        public string Name { get; set; }
         public IIdentifier Id {
                 get {
-                    if (Id == null)
+                    if (_id == null)
                         throw new Exception("Id is not initialized");
                     else
-                    return Id;
+                    return _id;
                 }
                 set {
-                    Id = value;
+                    _id = value;
                 }
             }
 

@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using WisT.Recognizer.Contracts;
+using WisT.Recognizer.Identifier;
 
 namespace WisT.Tests
 {
-    class LabelStorageMock : ILabelStorage
+    public class LabelStorageMock : ILabelStorage
     {
+        private int _labelsNum;
+
+        public LabelStorageMock(int LabelNum)
+        {
+            _labelsNum = LabelNum;
+        }
+
         public void Add(ILabel addObj)
         {
             throw new NotImplementedException();
@@ -19,11 +27,15 @@ namespace WisT.Tests
         public ILabel Get(IIdentifier id)
         {
             throw new NotImplementedException();
-        }
-
+        }        
         public IEnumerable<ILabel> GetAll()
         {
-            throw new NotImplementedException();
+            var labels = new List<Label>();
+            for(int i = 0; i < _labelsNum; i++)
+            {
+                labels.Add(new Label(i.ToString()) { Id = new Identifier(i)});
+            }
+            return labels;
         }
     }
 }

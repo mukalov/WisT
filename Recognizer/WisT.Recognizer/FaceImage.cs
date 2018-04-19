@@ -35,7 +35,7 @@ namespace WisT.Recognizer.Identifier
             return detectedFace.Bitmap;
         }
 
-        private const int _faceHeight = 200;
-        private const int _faceWeight = 150;
+        private const int _faceHeight = 300;
+        private const int _faceWeight = 250;
     }
 }

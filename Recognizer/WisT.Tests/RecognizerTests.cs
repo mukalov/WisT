@@ -61,7 +61,7 @@ namespace WisT.Recognizer.Identifier.Tests
             _imageRepo = new ImageStorageMock();
             _testReco = new Recognizer(_imageRepo, _labelRepo);
 
-            Bitmap load_img = new Bitmap(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson3\bc23325e-a23c-45ac-b970-e26726eca09c.bmp");
+            Bitmap load_img = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson3\bc23325e-a23c-45ac-b970-e26726eca09c.bmp");
             _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml"); // face detection there
             _testImage.Id = new Identifier(0);
 
@@ -82,7 +82,7 @@ namespace WisT.Recognizer.Identifier.Tests
             _imageRepo = new ImageStorageMock();
             _testReco = new Recognizer(_imageRepo, _labelRepo);
 
-            Bitmap load_img = new Bitmap(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson4\28e24e03-20cf-4c1b-bf7d-5d82d67d15f7.bmp");
+            Bitmap load_img = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson4\28e24e03-20cf-4c1b-bf7d-5d82d67d15f7.bmp");
             _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml"); // face detection there
             _testImage.Id = new Identifier(0);
 

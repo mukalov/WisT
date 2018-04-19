@@ -11,9 +11,6 @@ namespace WisT.Recognizer.Identifier
 {
     public class Recognizer : IRecognizer
     {
-        private IImageStorage _imgRepo;
-        private ILabelStorage _labelRepo;
-
         public Recognizer(IImageStorage imgRepo, ILabelStorage labelRepo)
         {
             _imgRepo = imgRepo;
@@ -32,14 +29,15 @@ namespace WisT.Recognizer.Identifier
                 List<int> trainingLabels = new List<int>();
 
                 int enumerator = 0;
-
+                IIdentifier currentId = new Identifier(0);
                 foreach (var current in batch)
                 {
                     compBatch.Add(new Image<Gray, Byte>(current.ImageOfFace));
                     trainingLabels.Add(enumerator++);
+                    currentId = current.Id;
                 }
 
-                FaceRecognizer recognizer = new EigenFaceRecognizer(batch.Count() + 1, double.PositiveInfinity);
+                FaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);
 
                 recognizer.Train(compBatch.ToArray(), trainingLabels.ToArray());
 
@@ -48,10 +46,13 @@ namespace WisT.Recognizer.Identifier
                 if(result.Distance < minDistanse)
                 {
                     minDistanse = result.Distance;
-                    answ = batch.First().Id;
+                    answ = currentId;
                 }
             }
             return answ;
         }
+
+        private IImageStorage _imgRepo;
+        private ILabelStorage _labelRepo;
     }
 }

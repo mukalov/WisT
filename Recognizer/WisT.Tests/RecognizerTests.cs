@@ -40,7 +40,7 @@ namespace WisT.Recognizer.Identifier.Tests
             _imageRepo = new ImageStorageMock();
             _testReco = new Recognizer(_imageRepo, _labelRepo);
 
-            Bitmap load_img = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson2\0e231aaa-8ed8-4043-aa01-b5b40ff37f07.bmp");
+            Bitmap load_img = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson2\ea055021-3316-4a9f-bef4-1b5cebb428ad.bmp");
             _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml"); // face detection there
             _testImage.Id = new Identifier(0);
 

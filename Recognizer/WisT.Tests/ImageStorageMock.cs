@@ -28,23 +28,16 @@ namespace WisT.Tests
 
         public IEnumerable<IFaceImage> Get(IIdentifier id)
         {
-            var path = RepoPath + @"\Recognizer\TestSample\TestPerson" + id.IdentifingCode.ToString() + @"TestBatch";
+            var path = RepoPath + @"\Recognizer\TestSample\TestPerson" + (id.IdentifingCode + 1).ToString() + @"\TestBatch";
 
             var haarPath = RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml";
-            try
+            var samplePathes = Directory.GetFiles(path);
+            List<FaceImage> Batch = new List<FaceImage>();
+            foreach (var imagePath in samplePathes)
             {
-                var samplePathes = Directory.GetFiles(path);
-                List<FaceImage> Batch = new List<FaceImage>();
-                foreach (var imagePath in samplePathes)
-                {
-                    Batch.Add(new FaceImage(new Bitmap(imagePath), haarPath));
-                }
-                return Batch;
+                Batch.Add(new FaceImage(new Bitmap(imagePath), haarPath) {Id = id });
             }
-            catch(Exception e)
-            {
-                throw new Exception("MyExc"); 
-            }
+            return Batch;
         }
 
         

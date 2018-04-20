@@ -2,18 +2,23 @@
 import Webcam from 'react-webcam';
 
 export default class WebcamComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { capture: '' };
+    }
+
     setRef = (webcam) => {
         this.webcam = webcam;
     }
 
     capture = () => {
         const imageSrc = this.webcam.getScreenshot();
-        console.log(imageSrc);
+        this.props.setCapture(imageSrc);
     };
 
     render() {
         return (
-            <div>
+            <div id="camera">
                 < Webcam
                     audio={false}
                     screenshotFormat="image/webp"

@@ -25,20 +25,20 @@
                 text-decoration: none;
             }
 
-#login > div > p {
+#login  > p {
     font-size: 1.5em;
     color: #00004d;
     width: 20%;
     padding: 5px 10px;
-    margin-left: 34.5%;
+    margin-left: 40%;
 }
 
-#login > div > input[type=text] {
+#login > input[type=text] {
     width: 20%;
     padding: 5px 10px;
     margin-bottom: 3%;
-    margin-left: 35%;
-    margin-right: 2%;
+    margin-left: 40%;
+    margin-right: 40%;
     box-sizing: border-box;
     border-style: inset;
     border-radius: 7px;
@@ -47,30 +47,13 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
-#login > div > button {
-    color: white;
-    text-align: center;
-    font-size: 1.2em;
-    padding: 5px 10px;
-    background-color: #003cb3;
-    border: none;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-    #login > div > button:active {
-        background-color: #004de6;
-        color: white;
-        border: none;
-        box-shadow: none;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
-    }
-
-#camera > div {
+#camera {
     width: auto;
-    margin-left: 27.5%;
+    margin-left: 33%;
+    margin-right: 32%;
 }
 
-    #camera > div > button {
+    #camera > button {
         color: white;
         text-align: center;
         font-size: 1.2em;
@@ -78,11 +61,12 @@
         background-color: #003cb3;
         border: none;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        margin-left: 25.5%;
+        margin-left: 47%;
+        margin-right: 30%;
         margin-top: 2%;
     }
 
-        #camera > div > button:active {
+        #camera > button:active {
             background-color: #004de6;
             color: white;
             border: none;
@@ -92,4 +76,23 @@
 
 #app > div > h1 {
     text-align: center;
+}
+#send {
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 5px 10px;
+    background-color: #003cb3;
+    border: none;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-left: 45%;
+    margin-right: 35%;
+    margin-top: 2%;
+}
+#send:active {
+    background-color: #004de6;
+    color: white;
+    border: none;
+    box-shadow: none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
 }

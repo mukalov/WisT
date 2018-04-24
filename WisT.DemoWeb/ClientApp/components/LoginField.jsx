@@ -8,6 +8,7 @@ export default class LoginField extends React.Component {
     }
 
     handleChange(e) {
+        this.props.onUpdate(e.target.value);
         this.setState({ text: e.target.value });
     }
 
@@ -18,14 +19,13 @@ export default class LoginField extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="login">
                 <p>Login:</p>
                 <input id="text_area" type="text"
                     onChange={this.handleChange}
                     value={this.state.text}
                 />
 
-                <button id="take" onClick={this.send_login}>Send login</button>
             </div>
         );
     }

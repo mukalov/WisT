@@ -1,4 +1,4 @@
-#nav_bar > ul {
+.nav_bar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -6,26 +6,26 @@
     background-color: #00004d;
 }
 
-    #nav_bar > ul > li {
-        float: right;
+.nav_bar > li {
+    float: right;
+}
+
+    .nav_bar > li > a {
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 1.2em;
+        padding: 14px 16px;
+        text-decoration: none;
     }
 
-        #nav_bar > ul > li > a {
-            display: block;
+        .nav_bar > li > a:hover {
+            background-color: #4d88ff;
             color: white;
-            text-align: center;
-            font-size: 1.2em;
-            padding: 14px 16px;
             text-decoration: none;
         }
 
-            #nav_bar > ul > li > a:hover {
-                background-color: #4d88ff;
-                color: white;
-                text-decoration: none;
-            }
-
-#login > div > p {
+.login > p {
     font-size: 1.5em;
     color: #00004d;
     width: 20%;
@@ -33,7 +33,7 @@
     margin-left: 34.5%;
 }
 
-#login > div > input[type=text] {
+.login > input[type=text] {
     width: 20%;
     padding: 5px 10px;
     margin-bottom: 3%;
@@ -47,7 +47,8 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
-#login > div > button {
+
+.logon > button {
     color: white;
     text-align: center;
     font-size: 1.2em;
@@ -55,9 +56,11 @@
     background-color: #003cb3;
     border: none;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-left: 25.5%;
+    margin-top: 2%;
 }
 
-    #login > div > button:active {
+    .logon > button:active {
         background-color: #004de6;
         color: white;
         border: none;
@@ -65,12 +68,12 @@
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
     }
 
-#camera > div {
+.camera {
     width: auto;
     margin-left: 27.5%;
 }
 
-    #camera > div > button {
+    .camera > button {
         color: white;
         text-align: center;
         font-size: 1.2em;
@@ -82,7 +85,7 @@
         margin-top: 2%;
     }
 
-        #camera > div > button:active {
+        .camera > button:active {
             background-color: #004de6;
             color: white;
             border: none;
@@ -90,6 +93,6 @@
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
         }
 
-#app > div > h1 {
+.greeting > h1 {
     text-align: center;
 }

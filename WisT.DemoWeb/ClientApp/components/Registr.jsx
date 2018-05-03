@@ -40,7 +40,7 @@ export default class Register extends React.Component {
         let data = new FormData();
         data.append('photo', this.state.photoArray);
         data.append('login', this.state.login);
-        axios.post('api/UploadUserInfo', data)
+        axios.post('api/Registration', data)
             .then((response) => {
                 console.log(response);
             })

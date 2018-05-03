@@ -24,7 +24,7 @@ export default class LogIn extends React.Component {
         data.append('photo', this.state.photoData);
         
 
-        axios.post('api/UploadUserInfo', data)
+        axios.post('api/Login', data)
             .then((response) => {
                 console.log(response);
             })

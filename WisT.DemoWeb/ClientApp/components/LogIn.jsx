@@ -1,34 +1,44 @@
 ﻿import React from 'react';
 import WebcamComponent from './Webcam'
 import LoginField from './LoginField'
+import axios from 'axios'
 
 export default class LogIn extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { login: '', capture: '' };
+        this.state = {
+            photoData: new Blob(),
+            photoSrc: ''
+        };
     }
 
-    setCapture = imageSrc => {
-        this.setState({ capture: imageSrc });
+    onPhotoUpdate = (imageSrc) => {
+        this.setState({
+            photoData: imageSrc,
+            photoSrc: window.URL.createObjectURL(imageSrc)
+        });
     }
 
-    setLogin = loginSrc => {
-        this.setState({ login: loginSrc });
-    }
+    send = () => {
+        let data = new FormData();
+        data.append('photo', this.state.photoData);
+        
 
-    logIn = () => {
-        if (this.state.login != '' && this.state.capture != '') {
-            console.log(this.state.login);
-            console.log(this.state.capture);
-        }
+        axios.post('api/UploadUserInfo', data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     render() {
         return (
-            <div>
-                <LoginField setLogin={this.setLogin} />
-                <WebcamComponent setCapture={this.setCapture} />
-                <button id="send" onClick={this.logIn}>Log in</button>
+            <div className="login">
+                <WebcamComponent onUpdate={this.onPhotoUpdate} />
+                <button id="take" onClick={this.send}>Log in</button>
+                <img src={this.state.photoSrc} alt="Taken photo" />
             </div>
         );
     }

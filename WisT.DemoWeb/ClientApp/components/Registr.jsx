@@ -1,35 +1,61 @@
 ﻿import React from 'react';
 import WebcamComponent from './Webcam'
 import LoginField from './LoginField'
+import axios from 'axios'
 
 export default class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { login: '', capture: '' };
+        this.state = {
+            login: '',
+            photoData: new Blob(),
+            photoArray: new Array(5),
+            photoSrc: ''
+        };
     }
 
-    setCapture = imageSrc => {
-        this.setState({ capture: imageSrc });
-    }
+    onLoginUpdate = (val) => {
+        this.setState({
+            login: val
+        })
+    };
 
-    setLogin = loginSrc => {
-        this.setState({ login: loginSrc });
-    }
+    onPhotoUpdate = (imageSrc) => {
 
-    registr = () => {
-        if (this.state.login != '' && this.state.capture != '') {
-            console.log(this.state.login);
-            console.log(this.state.capture);
+        var ph = new Array(5);
+        for (var i = 0; i < 5; i++) {
+            ph[i] = new Blob();
+            this.onPhotoUpdate;
+            ph.push(this.state.photoData);
         }
-  
+
+        this.setState({
+            photoData: imageSrc,
+            photoArray: ph,
+            photoSrc: window.URL.createObjectURL(imageSrc)
+        });
+    }
+
+    send = () => {
+        let data = new FormData();
+        data.append('photo', this.state.photoArray);
+        data.append('login', this.state.login);
+        axios.post('api/UploadUserInfo', data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     render() {
         return (
-            <div>
-                <LoginField setLogin={this.setLogin} />
-                <WebcamComponent setCapture={this.setCapture} />
-                <button id="send" onClick={this.registr}>Create an account</button>
+            <div className="registr">
+                <LoginField onUpdate={this.onLoginUpdate} />
+                <WebcamComponent onUpdate={this.onPhotoUpdate} />
+                <button id="send" onClick={this.send}>Create an account</button>
+                <img src={this.state.photoSrc} alt="Taken photo" />
             </div>
         );
     }

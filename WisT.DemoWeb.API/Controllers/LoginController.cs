@@ -7,18 +7,19 @@ using WisT.DemoWeb.API.DTO;
 namespace WisT.DemoWeb.API.Controllers
 {
     [Route("api/[controller]")]
-    public class UploadUserInfoController : Controller
+    class LoginController : Controller
     {
         [HttpPost]
-        public async Task Post(UserInfoDto userInfo)
+        public async Task Post(LoginInfo userInfo)
         {
+            Bitmap image;
             using (var memoryStream = new MemoryStream())
             {
                 await userInfo.Photo.CopyToAsync(memoryStream);
-                var image = Image.FromStream(memoryStream);
-                var bitmap = new Bitmap(image);
+                image = new Bitmap(Image.FromStream(memoryStream));
             }
-            var login = userInfo.Login;
+
+            //TO DO
         }
     }
 }

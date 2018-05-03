@@ -1,10 +1,10 @@
 ﻿import React from 'react';
 import Webcam from 'react-webcam';
+import dataURLtoBlob from 'blueimp-canvas-to-blob'
 
 export default class WebcamComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { capture: '' };
     }
 
     setRef = (webcam) => {
@@ -12,16 +12,16 @@ export default class WebcamComponent extends React.Component {
     }
 
     capture = () => {
-        const imageSrc = this.webcam.getScreenshot();
-        this.props.setCapture(imageSrc);
+        const imageSrc = dataURLtoBlob( this.webcam.getScreenshot());
+        this.props.onUpdate(imageSrc);
     };
 
     render() {
         return (
-            <div id="camera">
+            <div className="camera">
                 < Webcam
                     audio={false}
-                    screenshotFormat="image/webp"
+                    screenshotFormat="image/jpeg"
                     ref={this.setRef}
                     height={400}
                     weight={400}

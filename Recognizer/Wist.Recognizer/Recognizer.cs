@@ -3,7 +3,6 @@ using Emgu.CV.Face;
 using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using WisT.Recognizer.Contracts;
 using static Emgu.CV.Face.FaceRecognizer;
 

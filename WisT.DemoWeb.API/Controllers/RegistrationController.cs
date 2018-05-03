@@ -8,10 +8,10 @@ using WisT.DemoWeb.API.DTO;
 namespace WisT.DemoWeb.API.Controllers
 {
     [Route("api/[controller]")]
-    public class UploadUserInfoController : Controller
+    class RegistrationController
     {
         [HttpPost]
-        public async Task Post(UserInfoDto userInfo)
+        public async Task Post(RegistrationInfo userInfo)
         {
             var images = new List<Bitmap>();
             using (var memoryStream = new MemoryStream())
@@ -24,6 +24,8 @@ namespace WisT.DemoWeb.API.Controllers
                 }
             }
             var login = userInfo.Login;
+
+            //TO DO
         }
     }
 }

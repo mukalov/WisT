@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WisT.DemoWeb.API.DTO
 {
-    class RequestProcessor
+    static class WisTResponse
     {
-
+       public static string Answer;
     }
 }

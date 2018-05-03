@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WisT.DemoWeb.API.DTO;
 
 namespace WisT.DemoWeb.API.Controllers
 {
@@ -9,7 +10,7 @@ namespace WisT.DemoWeb.API.Controllers
         [HttpGet]
         public Task<string> Get()
         {
-            return Task.FromResult("Welcome to the WisT demo app!!!!");
+            return Task.FromResult(WisTResponse.Answer);
         }
     }
 }

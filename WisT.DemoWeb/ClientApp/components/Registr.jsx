@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import WebcamComponent from './Webcam'
+import WebcamComponent from './RegistrationWebcam'
 import LoginField from './LoginField'
 import axios from 'axios'
 import { log } from 'util';
@@ -24,17 +24,17 @@ export default class Register extends React.Component {
 
     onPhotoUpdate = (imageSrc) => {
 
-        var ph = this.state.photoArray;
-        for (var i = 0; i < 5; i++) {
+        //var ph = this.state.photoArray;
+        //for (var i = 0; i < 5; i++) {
 
-            ph[i] = new Blob();
-            ph[i] = imageSrc;
-        }
-        console.log(ph);
+        //    ph[i] = new Blob();
+        //    ph[i] = imageSrc;
+        //}
+        //console.log(ph);
         this.setState({
-            photoData: imageSrc,
-            photoArray: ph,
-            photoSrc: window.URL.createObjectURL(imageSrc)
+            photoData: imageSrc[0],
+            photoArray: imageSrc,
+            photoSrc: window.URL.createObjectURL(imageSrc[0])
         });
         console.log(this.state.photoArray);
     }
@@ -42,7 +42,9 @@ export default class Register extends React.Component {
     send = () => {
         let data = new FormData();
         console.log(this.state.photoArray);
-        data.append('Photoes', this.state.photoArray);
+        for (var i = 0; i < 5; i++) {
+            data.append('Photoes', this.state.photoArray[i]);
+        }
         
         data.append('Login', this.state.login);
 

@@ -6,6 +6,6 @@ namespace WisT.DemoWeb.API.DTO
     public class RegistrationInfo
     {
         public string Login { get; set; }
-        public List<IFormFile> Photoes { get; set; }
+        public IFormFile[] Photoes { get; set; }
     }
 }

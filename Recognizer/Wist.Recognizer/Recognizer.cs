@@ -10,16 +10,26 @@ namespace WisT.Recognizer.Identifier
 {
     public class Recognizer : IRecognizer
     {
+        private double _minDistanse = double.PositiveInfinity;
+        private double _transistRateCoefficient = 0.7;
+
         public Recognizer(IImageStorage imgRepo, ILabelStorage labelRepo)
         {
             _imgRepo = imgRepo;
             _labelRepo = labelRepo;
         }
 
+        public Recognizer(IImageStorage imgRepo, ILabelStorage labelRepo, double transistRateCoefficient)
+        {
+            _imgRepo = imgRepo;
+            _labelRepo = labelRepo;
+            _transistRateCoefficient = transistRateCoefficient;
+        }
+
         public IIdentifier GetIdentity(IFaceImage img)
         {
             IIdentifier answ = new Identifier(int.MinValue);
-            double minDistanse = double.PositiveInfinity;
+            var distanses = new List<double>();
             var labels = _labelRepo.GetAll();
             foreach (var label in labels)
             {
@@ -36,18 +46,27 @@ namespace WisT.Recognizer.Identifier
                     currentId = current.Id;
                 }
 
-                Emgu.CV.Face.FaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);
+                FaceRecognizer recognizer = new LBPHFaceRecognizer(4, 10, 10, 10, 200);
 
                 recognizer.Train(compBatch.ToArray(), trainingLabels.ToArray());
 
                 PredictionResult result = recognizer.Predict(new Image<Gray, Byte>(img.ImageOfFace));
-
-                if(result.Distance < minDistanse)
+                distanses.Add(result.Distance);
+                if (result.Distance < _minDistanse)
                 {
-                    minDistanse = result.Distance;
+                    _minDistanse = result.Distance;
                     answ = currentId;
                 }
             }
+
+            foreach(var dist in distanses)
+            {
+                if (_minDistanse > _transistRateCoefficient * dist && dist != _minDistanse)
+                {
+                    return new Identifier(-1);
+                }
+            }
+
             return answ;
         }
 

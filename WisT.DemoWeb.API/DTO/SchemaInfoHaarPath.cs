@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WisT.DemoWeb.API.DTO
 {
-    static class WisTResponse
+    public class SchemaInfoHaarPath
     {
-       public static string Answer;
+        public string FaceClassifierPath { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using WisT.DemoWeb.API.DTO;
 namespace WisT.DemoWeb.API.Controllers
 {
     [Route("api/[controller]")]
-    class RegistrationController
+    public class RegistrationController
     {
         [HttpPost]
         public async Task Post(RegistrationInfo userInfo)

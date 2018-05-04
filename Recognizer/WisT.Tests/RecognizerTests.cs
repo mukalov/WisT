@@ -10,7 +10,7 @@ namespace WisT.Recognizer.Identifier.Tests
     public class RecognizerTests
     {
         [TestMethod()]
-        public void Test1()
+        public void CorrectFaceTest1()
         {
             Recognizer _testReco;
             FaceImage _testImage;
@@ -20,8 +20,10 @@ namespace WisT.Recognizer.Identifier.Tests
             _testReco = new Recognizer(_imageRepo, _labelRepo);
 
             Bitmap load_img = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson1\e2105db7-8e4f-4cbe-b1d0-7b0c7274431c.bmp");
-            _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml"); // face detection there
-            _testImage.Id = new Identifier(0);
+            _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml")
+            {
+                Id = new Identifier(0)
+            }; // face detection there
 
             IIdentifier actual = _testReco.GetIdentity(_testImage);
             var expected = new Identifier(0);
@@ -29,7 +31,7 @@ namespace WisT.Recognizer.Identifier.Tests
         }
 
         [TestMethod()]
-        public void Test2()
+        public void CorrectFaceTest2()
         {
             FaceImage _testImage;
             LabelStorageMock _labelRepo;
@@ -41,8 +43,10 @@ namespace WisT.Recognizer.Identifier.Tests
             _testReco = new Recognizer(_imageRepo, _labelRepo);
 
             Bitmap load_img = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson2\ea055021-3316-4a9f-bef4-1b5cebb428ad.bmp");
-            _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml"); // face detection there
-            _testImage.Id = new Identifier(0);
+            _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml")
+            {
+                Id = new Identifier(1)
+            }; // face detection there
 
             IIdentifier actual = _testReco.GetIdentity(_testImage);
             var expected = new Identifier(1);
@@ -50,7 +54,7 @@ namespace WisT.Recognizer.Identifier.Tests
         }
 
         [TestMethod()]
-        public void Test3()
+        public void CorrectFaceTest3()
         {
             FaceImage _testImage;
             LabelStorageMock _labelRepo;
@@ -62,8 +66,10 @@ namespace WisT.Recognizer.Identifier.Tests
             _testReco = new Recognizer(_imageRepo, _labelRepo);
 
             Bitmap load_img = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson3\bc23325e-a23c-45ac-b970-e26726eca09c.bmp");
-            _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml"); // face detection there
-            _testImage.Id = new Identifier(0);
+            _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml")
+            {
+                Id = new Identifier(2)
+            }; // face detection there
 
             IIdentifier actual = _testReco.GetIdentity(_testImage);
             var expected = new Identifier(2);
@@ -71,7 +77,7 @@ namespace WisT.Recognizer.Identifier.Tests
         }
 
         [TestMethod()]
-        public void Test4()
+        public void CorrectFaceTest4()
         {
             FaceImage _testImage;
             LabelStorageMock _labelRepo;
@@ -83,8 +89,10 @@ namespace WisT.Recognizer.Identifier.Tests
             _testReco = new Recognizer(_imageRepo, _labelRepo);
 
             Bitmap load_img = new Bitmap(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\Recognizer\TestSample\TestPerson4\28e24e03-20cf-4c1b-bf7d-5d82d67d15f7.bmp");
-            _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml"); // face detection there
-            _testImage.Id = new Identifier(0);
+            _testImage = new FaceImage(load_img, _imageRepo.RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml")
+            {
+                Id = new Identifier(3)
+            }; // face detection there
 
             IIdentifier actual = _testReco.GetIdentity(_testImage);
             var expected = new Identifier(3);

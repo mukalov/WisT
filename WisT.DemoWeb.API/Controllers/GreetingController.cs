@@ -10,7 +10,7 @@ namespace WisT.DemoWeb.API.Controllers
         [HttpGet]
         public Task<string> Get()
         {
-            return Task.FromResult(WisTResponse.Answer);
+            return Task.FromResult(WisTResponse.Massage);
         }
     }
 }

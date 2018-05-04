@@ -36,7 +36,7 @@ namespace WisT.Recognizer.Identifier
                     currentId = current.Id;
                 }
 
-                FaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);
+                Emgu.CV.Face.FaceRecognizer recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);
 
                 recognizer.Train(compBatch.ToArray(), trainingLabels.ToArray());
 

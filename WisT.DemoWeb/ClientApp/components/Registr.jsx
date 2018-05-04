@@ -2,6 +2,8 @@
 import WebcamComponent from './Webcam'
 import LoginField from './LoginField'
 import axios from 'axios'
+import { log } from 'util';
+import dataURLtoBlob from 'blueimp-canvas-to-blob'
 
 export default class Register extends React.Component {
     constructor(props) {
@@ -9,7 +11,7 @@ export default class Register extends React.Component {
         this.state = {
             login: '',
             photoData: new Blob(),
-            photoArray: new Array(5),
+            photoArray: Array(5).fill(new Blob()),
             photoSrc: ''
         };
     }
@@ -22,24 +24,28 @@ export default class Register extends React.Component {
 
     onPhotoUpdate = (imageSrc) => {
 
-        var ph = new Array(5);
+        var ph = this.state.photoArray;
         for (var i = 0; i < 5; i++) {
-            ph[i] = new Blob();
-            this.onPhotoUpdate;
-            ph.push(this.state.photoData);
-        }
 
+            ph[i] = new Blob();
+            ph[i] = imageSrc;
+        }
+        console.log(ph);
         this.setState({
             photoData: imageSrc,
             photoArray: ph,
             photoSrc: window.URL.createObjectURL(imageSrc)
         });
+        console.log(this.state.photoArray);
     }
 
     send = () => {
         let data = new FormData();
-        data.append('photo', this.state.photoArray);
-        data.append('login', this.state.login);
+        console.log(this.state.photoArray);
+        data.append('Photoes', this.state.photoArray);
+        
+        data.append('Login', this.state.login);
+
         axios.post('api/Registration', data)
             .then((response) => {
                 console.log(response);

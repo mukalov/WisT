@@ -2,7 +2,7 @@
 
 namespace WisT.DemoWeb.API.DTO
 {
-    class LoginInfo
+    public class LoginInfo
     {
         public IFormFile Photo { get; set; }
     }

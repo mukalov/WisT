@@ -21,7 +21,7 @@ export default class LogIn extends React.Component {
 
     send = () => {
         let data = new FormData();
-        data.append('photo', this.state.photoData);
+        data.append('Photo', this.state.photoData);
         
 
         axios.post('api/Login', data)

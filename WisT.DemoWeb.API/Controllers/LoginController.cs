@@ -7,7 +7,7 @@ using WisT.DemoWeb.API.DTO;
 namespace WisT.DemoWeb.API.Controllers
 {
     [Route("api/[controller]")]
-    class LoginController : Controller
+    public class LoginController : Controller
     {
         [HttpPost]
         public async Task Post(LoginInfo userInfo)

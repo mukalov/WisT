@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import Webcam from 'react-webcam';
 import dataURLtoBlob from 'blueimp-canvas-to-blob'
+import { setTimeout } from 'timers';
 
 export default class WebcamComponent extends React.Component {
     constructor(props) {
@@ -12,7 +13,11 @@ export default class WebcamComponent extends React.Component {
     }
 
     capture = () => {
-        const imageSrc = dataURLtoBlob( this.webcam.getScreenshot());
+        const imageSrc = new Array(5);
+        for (var i = 0; i < 5; ++i) {
+            imageSrc[i] = dataURLtoBlob(this.webcam.getScreenshot());
+            setTimeout(1000);
+        }
         this.props.onUpdate(imageSrc);
     };
 

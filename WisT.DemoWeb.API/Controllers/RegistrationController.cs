@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
+using WisT.Recognizer.Identifier;
 
 namespace WisT.DemoWeb.API.Controllers
 {
@@ -13,19 +15,37 @@ namespace WisT.DemoWeb.API.Controllers
         [HttpPost]
         public async Task Post(RegistrationInfo userInfo)
         {
-            var images = new List<Bitmap>();
+            string path_haar = LoadPathFromJson("appsettings.json"); //mb there is required full path
+
+            var images = new List<FaceImage>();
             using (var memoryStream = new MemoryStream())
             {
                 foreach (var onePhoto in userInfo.Photoes)
                 {
                     await onePhoto.CopyToAsync(memoryStream);
-                    var image = Image.FromStream(memoryStream);
-                    images.Add(new Bitmap(image));
+                    var image = new Bitmap(Image.FromStream(memoryStream));
+                    images.Add(new FaceImage(image, path_haar));
                 }
             }
-            var login = userInfo.Login;
+            var login = new Label(userInfo.Login);
 
-            //TO DO
+            //----------------------------------------------------------
+            //IImageStorage imgRepo;
+            //ILabelStorage labelRepo;
+
+            //imgRepo.Add(images);
+            //labelRepo.Add(login);
+            //----------------------------------------------------------
+        }
+
+        public string LoadPathFromJson(string jsonPath)
+        {
+            using (StreamReader r = new StreamReader(jsonPath))
+            {
+                var json = r.ReadToEnd();
+                var items = JsonConvert.DeserializeObject<List<SchemaInfoHaarPath>>(json);
+                return items[0].FaceClassifierPath;
+            }
         }
     }
 }

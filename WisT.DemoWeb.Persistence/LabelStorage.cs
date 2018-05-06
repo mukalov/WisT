@@ -22,7 +22,16 @@ namespace WisT.DemoWeb.Persistence.Control
         }
         public ILabel Get(IIdentifier id)
         {
-            throw new NotImplementedException();
+            User user = new User();
+
+            using (WisTEntities context = new WisTEntities())
+            {
+                user = context.Users.Where
+                    (x => x.Id == id.IdentifingCode)
+                    .SingleOrDefault();
+            }
+
+            return new DatabaseLabel(user); 
         }
         public IEnumerable<ILabel> GetAll()
         {

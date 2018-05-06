@@ -20,7 +20,16 @@ namespace WisT.DemoWeb.Persistence.Control
 
             using (WisTEntities context = new WisTEntities())
             {
-                id = context.UserImages.Max(x => x.ImageId);
+                try
+                {
+                    id = context.UserImages.Max
+                    (x => x.ImageId) + 1;
+                }
+                catch
+                {
+                    id = 0;
+                }
+                
             }
 
             foreach (var obj in addObj)

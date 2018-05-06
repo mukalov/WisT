@@ -12,8 +12,15 @@ namespace WisT.DemoWeb.Persistence.Control
         {
             using (WisTEntities context = new WisTEntities())
             {
-                context.Users.Add(new User(addObj));
-                context.SaveChanges();
+                try
+                {
+                    context.Users.Add(new User(addObj));
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("AddExistingUserException");
+                }
             }
         }
         public void Delete(IIdentifier id)

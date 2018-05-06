@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <AssemblyName>WisT.DemoWeb.Persistence.Control</AssemblyName>
+    <RootNamespace>WisT.DemoWeb.Persistence.Control</RootNamespace>
+  </PropertyGroup>
+
+</Project>

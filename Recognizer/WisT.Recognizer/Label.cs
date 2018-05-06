@@ -24,5 +24,11 @@ namespace WisT.Recognizer.Identifier
         {
             this.Name = Name;
         }
+
+        public Label(string Name, IIdentifier Id)
+        {
+            this.Name = Name; 
+            _id = Id;
+        }
     }
 }

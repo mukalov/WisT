@@ -3,6 +3,8 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
+using WisT.DemoWeb.FilePersistence;
+using WisT.Recognizer.Contracts;
 using WisT.Recognizer.Identifier;
 
 namespace WisT.DemoWeb.API.Controllers
@@ -22,23 +24,19 @@ namespace WisT.DemoWeb.API.Controllers
 
             var userFace = new FaceImage(image);
 
-            //-------------------------------------------------------------------------------
-            //IImageStorage imgRepo;
-            //ILabelStorage labelRepo;
-            //var recognizer = new Recognizer.Identifier.Recognizer(imgRepo, labelRepo); //need implementation
+            IImageStorage imgRepo = new ImageStorage();
+            ILabelStorage labelRepo = new LabelStorage();
+            var recognizer = new Recognizer.Identifier.Recognizer(imgRepo, labelRepo); //need implementation
 
-            //IIdentifier usersId = recognizer.GetIdentity(userFace);
-            //if (usersId.IdentifingCode != -1)
-            //{
-            //    WisTResponse.Massage = WisTResponse.GreetingMassage + labelRepo.Get(usersId).Name;
-            //}
-            //else
-            //{
-            //    WisTResponse.Massage = WisTResponse.RefuseMassage;
-            //}
-            //-------------------------------------------------------------------------------
+            IIdentifier usersId = recognizer.GetIdentity(userFace);
+            if (usersId.IdentifingCode != -1)
+            {
+                WisTResponse.Massage = WisTResponse.GreetingMassage + labelRepo.Get(usersId).Name;
+            }
+            else
+            {
+                WisTResponse.Massage = WisTResponse.RefuseMassage;
+            }
         }
-
-
     }
 }

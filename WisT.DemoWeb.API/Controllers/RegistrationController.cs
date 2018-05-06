@@ -5,6 +5,8 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
+using WisT.DemoWeb.FilePersistence;
+using WisT.Recognizer.Contracts;
 using WisT.Recognizer.Identifier;
 
 namespace WisT.DemoWeb.API.Controllers
@@ -29,13 +31,11 @@ namespace WisT.DemoWeb.API.Controllers
             }
             var login = new Label(userInfo.Login);
 
-            //----------------------------------------------------------
-            //IImageStorage imgRepo;
-            //ILabelStorage labelRepo;
+            IImageStorage imgRepo = new ImageStorage();
+            ILabelStorage labelRepo = new LabelStorage();
 
-            //imgRepo.Add(images);
-            //labelRepo.Add(login);
-            //----------------------------------------------------------
+            imgRepo.Add(images);
+            labelRepo.Add(login);
         }
 
         public string LoadPathFromJson(string jsonPath)

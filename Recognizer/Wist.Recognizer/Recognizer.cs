@@ -46,7 +46,7 @@ namespace WisT.Recognizer.Identifier
                     currentId = current.Id;
                 }
 
-                FaceRecognizer recognizer = new LBPHFaceRecognizer(4, 10, 10, 10, 200);
+                FaceRecognizer recognizer = new LBPHFaceRecognizer(2, 8, 8, 8, 200);
 
                 recognizer.Train(compBatch.ToArray(), trainingLabels.ToArray());
 

@@ -13,7 +13,7 @@ namespace WisT.Tests
         [TestMethod]
         public void AddGetTest1()
         {
-            ILabelStorage testStorager = new ImageStorage();
+            ILabelStorage testStorager = new LabelStorage();
             Label input = new Label("pavlo", new Identifier(34));
             testStorager.Add(input);
             Label output = (Label)testStorager.Get(new Identifier(34));
@@ -23,7 +23,7 @@ namespace WisT.Tests
         [TestMethod]
         public void AddGetTest2()
         {
-            ILabelStorage testStorager = new ImageStorage();
+            ILabelStorage testStorager = new LabelStorage();
             Label input = new Label("avlo", new Identifier(34));
             testStorager.Add(input);
             Label output = (Label)testStorager.Get(new Identifier(34));
@@ -33,7 +33,7 @@ namespace WisT.Tests
         [TestMethod]
         public void AddGetTest3()
         {
-            ILabelStorage testStorager = new ImageStorage();
+            ILabelStorage testStorager = new LabelStorage();
             Label input = new Label("vasia", new Identifier(43234));
             testStorager.Add(input);
             Label output = (Label)testStorager.Get(new Identifier(43234));
@@ -43,7 +43,7 @@ namespace WisT.Tests
         [TestMethod]
         public void AddGetTest4()
         {
-            ILabelStorage testStorager = new ImageStorage();
+            ILabelStorage testStorager = new LabelStorage();
             Label input = new Label("tytom", new Identifier(12334));
             testStorager.Add(input);
             Label output = (Label)testStorager.Get(new Identifier(43234));
@@ -53,7 +53,7 @@ namespace WisT.Tests
         [TestMethod]
         public void AddGetTest5()
         {
-            ILabelStorage testStorager = new ImageStorage();
+            ILabelStorage testStorager = new LabelStorage();
             Label input = new Label("ivan", new Identifier(341));
             testStorager.Add(input);
             Label output = (Label)testStorager.Get(new Identifier(341));

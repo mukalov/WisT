@@ -1,42 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Drawing;
-using System.IO;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
-using WisT.DemoWeb.FilePersistence;
-using WisT.Recognizer.Contracts;
-using WisT.Recognizer.Identifier;
+using WisT.DemoWeb.API.Services;
 
 namespace WisT.DemoWeb.API.Controllers
 {
     [Route("api/[controller]")]
     public class LoginController : Controller
     {
-        [HttpPost]
-        public async Task Post(LoginInfo userInfo)
+        private ILoginService _loginService;
+
+        public LoginController(ILoginService loginService)
         {
-            Bitmap image;
-            using (var memoryStream = new MemoryStream())
-            {
-                    await userInfo.Photo.CopyToAsync(memoryStream);
-                    image = new Bitmap(Image.FromStream(memoryStream));
-            }
+            _loginService = loginService;
+        }
 
-            var userFace = new FaceImage(image);
-
-            IImageStorage imgRepo = new ImageStorage();
-            ILabelStorage labelRepo = new LabelStorage();
-            var recognizer = new Recognizer.Identifier.Recognizer(imgRepo, labelRepo); //need implementation
-
-            IIdentifier usersId = recognizer.GetIdentity(userFace);
-            if (usersId.IdentifingCode != -1)
-            {
-                WisTResponse.Massage = WisTResponse.GreetingMassage + labelRepo.Get(usersId).Name;
-            }
+        [HttpPost]
+        public async Task<IActionResult> Post(LoginInfo userInfo)
+        {
+            var checkResult = await _loginService.CheckAsync(userInfo);
+            if (checkResult == WisTResponse.NoDetectedFace)
+                return Ok();
+            if (checkResult == WisTResponse.NoRegistrated)
+                return BadRequest();
             else
-            {
-                WisTResponse.Massage = WisTResponse.RefuseMassage;
-            }
+                return NotFound();
         }
     }
 }

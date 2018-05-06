@@ -11,23 +11,24 @@ namespace WisT.DemoWeb.FilePersistence
     {
         private string _prjPath;
         private string _imagesPath;
+        private static int _numOfPhotoes = 5;
 
         public ImageStorage()
         {
-            _prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
-            _imagesPath = _projectPath + @"\WisT.DemoWeb.FilePersistence\Repo\Images";
+            _prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+            _imagesPath = _prjPath + @"\WisT.DemoWeb.FilePersistence\Repo\Images";
         }
 
         public void Add(IEnumerable<IFaceImage> addObj)
         {
             int photoCounter = 0;
-            var haarPath = _prjPath + @"\Recognizer\haarcascade_frontalface_default.xml";
             foreach (var obj in addObj)
             {
-                string pathToCurrent = _imagesPath + (photoCounter++).ToString() + "$" + obj.Id.IdentifingCode.ToString() + ".bmp";
-                var currentImg = new FaceImage(obj.ImageOfFace, haarPath);
+                string pathToCurrent = _imagesPath + @"\" + (photoCounter++).ToString() + "$" + obj.Id.IdentifingCode.ToString() + ".bmp";
+                var currentImg = new FaceImage(obj.ImageOfFace);
                 currentImg.ImageOfFace.Save(pathToCurrent);
             }
+            _numOfPhotoes = photoCounter + 1;
         }
 
         public void Delete(IIdentifier id)
@@ -37,12 +38,10 @@ namespace WisT.DemoWeb.FilePersistence
 
         public IEnumerable<IFaceImage> Get(IIdentifier id)
         {
-            int photoCounter = 0;
-            int photoCount = 5;
             List<FaceImage> batch = new List<FaceImage>();
-            for( ; photoCounter < photoCount ; photoCount++)
+            for(int photoCounter = 0; photoCounter < _numOfPhotoes; photoCounter++)
             {
-                string currrentPath = _imagesPath + photoCounter.ToString() + "$" + id.IdentifingCode.ToString() + ".bmp";
+                string currrentPath = _imagesPath + @"\" + photoCounter.ToString() + "$" + id.IdentifingCode.ToString() + ".bmp";
                 FaceImage currentImage = new FaceImage(new Bitmap(currrentPath)) { Id = id};
                 batch.Add(currentImage);
             }

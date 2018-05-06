@@ -13,7 +13,7 @@ namespace WisT.DemoWeb.FilePersistence
 
         public LabelStorage()
         {
-            _projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+            _projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             _clientsPath = _projectPath + @"\WisT.DemoWeb.FilePersistence\Repo\Labels";
         }
 

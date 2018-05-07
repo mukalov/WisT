@@ -33,7 +33,7 @@ namespace WisT.DemoWeb.API.Services
             var pathToHaar = prjPath + detectConfig;
 
             var images = new List<FaceImage>();
-            var login = new Label(userInfo.Login) { Id = new Identifier(StrToId(userInfo.Login)) };
+            var login = new Label(userInfo.Login);
             try
             {
                 using (var memoryStream = new MemoryStream())
@@ -42,7 +42,7 @@ namespace WisT.DemoWeb.API.Services
                     {
                         await onePhoto.CopyToAsync(memoryStream);
                         var image = new Bitmap(Image.FromStream(memoryStream));
-                        images.Add(new FaceImage(image, pathToHaar) { Id = new Identifier(StrToId(userInfo.Login)) });
+                        images.Add(new FaceImage(image, pathToHaar));
                     }
                 }
             }
@@ -50,7 +50,7 @@ namespace WisT.DemoWeb.API.Services
             {
                 if (e.Message == "UndetectedFaceException")
                 {
-                    response = WisTResponse.NoDetectedFace;
+                    response = WisTResponse.NotDetectedFace;
                 }
             }
 
@@ -58,18 +58,6 @@ namespace WisT.DemoWeb.API.Services
             _labelRepo.Add(login);
 
             return response;
-        }
-
-        private int StrToId(string name)
-        {
-            int hash = 0;
-            int radix = 1;
-            foreach (char c in name)
-            {
-                hash += radix * c;
-                radix *= 10;
-            }
-            return hash;
         }
     }
 }

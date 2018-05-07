@@ -41,7 +41,7 @@ namespace WisT.Recognizer.Identifier
             {
                 throw new Exception("UndetectedFaceException");
             }
-                Image<Gray, Byte> detectedFace = detectionImage.Copy(Face[0]);
+            Image<Gray, Byte> detectedFace = detectionImage.Copy(Face[0]);
 
             return detectedFace.Bitmap;
         }

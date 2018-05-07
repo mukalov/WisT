@@ -8,9 +8,9 @@ namespace WisT.DemoWeb.API.DTO
 {
     public enum WisTResponse
     {
-       NoDetectedFace,
-       NoRegistrated,
+       NotDetectedFace,
+       NotRegistered,
        Recognized,
-       Registrated
+       Registered
     }
 }

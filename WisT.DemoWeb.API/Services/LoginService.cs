@@ -59,7 +59,7 @@ namespace WisT.DemoWeb.API.Services
             }
             catch
             {
-                response = WisTResponse.NoDetectedFace;
+                response = WisTResponse.NotDetectedFace;
             }
             return response;
         }

@@ -25,7 +25,7 @@ namespace WisT.DemoWeb.Persistence.Control
                     id = context.UserImages.Max
                     (x => x.ImageId) + 1;
                 }
-                catch
+                catch (ArgumentNullException)
                 {
                     id = 0;
                 }
@@ -51,7 +51,15 @@ namespace WisT.DemoWeb.Persistence.Control
             using (WisTEntities context = new WisTEntities())
             {
                 context.UserImages.AddRange(userImages);
-                context.SaveChanges();
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    // Delete Label From Db
+                    throw new Exception("ImagesUnsavedException");
+                }
             }
         }
         public void Delete(IIdentifier id)
@@ -61,13 +69,21 @@ namespace WisT.DemoWeb.Persistence.Control
         public IEnumerable<IFaceImage> Get(IIdentifier id)
         {
             List<IFaceImage> images = new List<IFaceImage>();
+            List<UserImage> userImages = new List<UserImage>();
 
             using (WisTEntities context = new WisTEntities())
             {
-                List<UserImage> userImages = context.UserImages.Where
+                try
+                {
+                    userImages = context.UserImages.Where
                     (x => x.Id == id.IdentifingCode)
                     .Distinct()
                     .ToList();
+                }
+                catch
+                {
+                    throw new Exception("ImagesNotStoredException");
+                }
 
                 foreach (var userImage in userImages)
                 {

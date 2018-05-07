@@ -33,9 +33,16 @@ namespace WisT.DemoWeb.Persistence.Control
 
             using (WisTEntities context = new WisTEntities())
             {
-                user = context.Users.Where
+                try
+                {
+                    user = context.Users.Where
                     (x => x.Id == id.IdentifingCode)
                     .SingleOrDefault();
+                }
+                catch
+                {
+                    throw new Exception("LablelNotStoredException");
+                }
             }
 
             return new DatabaseLabel(user); 
@@ -43,10 +50,18 @@ namespace WisT.DemoWeb.Persistence.Control
         public IEnumerable<ILabel> GetAll()
         {
             List<ILabel> labels = new List<ILabel>();
+            List<User> users = new List<User>();
 
             using (WisTEntities context = new WisTEntities())
             {
-                List<User> users = context.Users.ToList();
+                try
+                {
+                    users = context.Users.ToList();
+                }
+                catch
+                {
+                    throw new Exception("NoStoredLabelsException");
+                }
 
                 foreach (var user in users)
                 {

@@ -14,10 +14,14 @@ namespace WisT.DemoWeb.API.Services
     public class RegistrationService : IRegistrationService
     {
         private IConfiguration _configuration;
+        private IImageStorage _imgRepo;
+        private ILabelStorage _labelRepo;
 
-        public RegistrationService(IConfiguration configuration)
+        public RegistrationService(IConfiguration configuration, IImageStorage imgRepo, ILabelStorage labelRepo)
         {
             _configuration = configuration;
+            _imgRepo = imgRepo;
+            _labelRepo = labelRepo;
         }
 
         public async Task<WisTResponse> RegisterAsync(RegistrationInfo userInfo)
@@ -50,11 +54,8 @@ namespace WisT.DemoWeb.API.Services
                 }
             }
 
-            IImageStorage imgRepo = new ImageStorage();
-            ILabelStorage labelRepo = new LabelStorage();
-
-            imgRepo.Add(images);
-            labelRepo.Add(login);
+            _imgRepo.Add(images);
+            _labelRepo.Add(login);
 
             return response;
         }

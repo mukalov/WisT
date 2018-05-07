@@ -12,10 +12,14 @@ namespace WisT.DemoWeb.API.Services
     public class LoginService : ILoginService
     {
         private IConfiguration _configuration;
+        private IImageStorage _imgRepo;
+        private ILabelStorage _labelRepo;
 
-        public LoginService(IConfiguration configuration)
+        public LoginService(IConfiguration configuration, IImageStorage imgRepo, ILabelStorage labelRepo)
         {
             _configuration = configuration;
+            _imgRepo = imgRepo;
+            _labelRepo = labelRepo;
         }
 
         public async Task<WisTResponse> CheckAsync(LoginInfo userInfo)
@@ -41,9 +45,7 @@ namespace WisT.DemoWeb.API.Services
             try
             {
                 userFace = new FaceImage(image, pathToHaar);
-                IImageStorage imgRepo = new ImageStorage();
-                ILabelStorage labelRepo = new LabelStorage();
-                var recognizer = new Recognizer.Identifier.Recognizer(imgRepo, labelRepo, transistRateCoefficient);
+                var recognizer = new Recognizer.Identifier.Recognizer(_imgRepo, _labelRepo, transistRateCoefficient);
 
                 IIdentifier usersId = recognizer.GetIdentity(userFace);
                 if (usersId.IdentifingCode != -1)

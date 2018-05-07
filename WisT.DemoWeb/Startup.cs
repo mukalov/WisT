@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WisT.DemoWeb.API.DependenciesResolver;
 
 namespace WisT.DemoWeb
 {
@@ -20,6 +21,7 @@ namespace WisT.DemoWeb
         {
             services.AddMvc();
             services.AddSingleton<IConfiguration>(Configuration);
+            Bootstraper.RegisterWisTDependencies(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -24,7 +24,7 @@ namespace WisT.DemoWeb.FilePersistence
             int photoCounter = 0;
             foreach (var obj in addObj)
             {
-                string pathToCurrent = _imagesPath + @"\" + (photoCounter++).ToString() + "$" + obj.Id.IdentifingCode.ToString() + ".bmp";
+                string pathToCurrent = _imagesPath + @"\" + (photoCounter++).ToString() + "$" + LabelStorage.CurrentClient.Id.IdentifingCode.ToString() + ".bmp";
                 var currentImg = new FaceImage(obj.ImageOfFace);
                 currentImg.ImageOfFace.Save(pathToCurrent);
             }

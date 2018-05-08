@@ -41,7 +41,7 @@ namespace WisT.DemoWeb.API.Services
                     {
                         await onePhoto.CopyToAsync(memoryStream);
                         var image = new Bitmap(Image.FromStream(memoryStream));
-                        images.Add(new FaceImage(image, pathToHaar) { Id = login.Id});
+                        images.Add(new FaceImage(image, pathToHaar));
                     }
                 }
             }
@@ -50,8 +50,8 @@ namespace WisT.DemoWeb.API.Services
                 response = WisTResponse.NotDetectedFace;
             }
 
-            _imgRepo.Add(images);
             _labelRepo.Add(login);
+            _imgRepo.Add(images);
 
             return response;
         }

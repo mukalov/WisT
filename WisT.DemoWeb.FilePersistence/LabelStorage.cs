@@ -11,6 +11,8 @@ namespace WisT.DemoWeb.FilePersistence
         private string _projectPath;
         private string _clientsPath;
 
+        public static ILabel CurrentClient;
+
         public LabelStorage()
         {
             _projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
@@ -19,7 +21,9 @@ namespace WisT.DemoWeb.FilePersistence
 
         public void Add(ILabel addObj)
         {
-            string filePath = _clientsPath + @"\$" + addObj.Id.IdentifingCode.ToString() + @".txt";
+            CurrentClient = addObj;
+            CurrentClient.Id = new Identifier(CreateId(addObj.Name));
+            string filePath = _clientsPath + @"\$" + CreateId(addObj.Name) + @".txt";
             File.Create(filePath).Dispose(); ;
             using (TextWriter tw = new StreamWriter(filePath))
             {
@@ -63,6 +67,18 @@ namespace WisT.DemoWeb.FilePersistence
             }
 
             return allLabels;
+        }
+
+        public static int CreateId(string name)
+        {
+            int hash = 0;
+            int radix = 1;
+            foreach (char c in name)
+            {
+                hash += radix * c;
+                radix *= 10;
+            }
+            return hash;
         }
 
         private int IdParser(string path)

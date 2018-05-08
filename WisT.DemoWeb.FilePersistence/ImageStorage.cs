@@ -28,7 +28,6 @@ namespace WisT.DemoWeb.FilePersistence
                 var currentImg = new FaceImage(obj.ImageOfFace);
                 currentImg.ImageOfFace.Save(pathToCurrent);
             }
-            _numOfPhotoes = photoCounter + 1;
         }
 
         public void Delete(IIdentifier id)

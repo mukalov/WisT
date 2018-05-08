@@ -8,7 +8,8 @@ export default class LogIn extends React.Component {
         super(props);
         this.state = {
             photoData: new Blob(),
-            photoSrc: ''
+            photoSrc: '',
+            Message: 'Take photo and send to login.'
         };
     }
 
@@ -31,14 +32,20 @@ export default class LogIn extends React.Component {
             .catch((error) => {
                 console.log(error);
             });
+        this.getResponse();
     }
 
     getResponse = () => {
         axios.get('api/Login')
             .then(res => {
-            const Message = res.status;
-            this.setState({ Message });
-        });
+                if (res.status == 200)
+                    WisTMassage = "You are logined!";
+                if (res.status == 204)
+                    WisTMassage = "You have bad photo I don't see you.";
+                if (res.status >= 400)
+                    WisTMassage = "You are not logined";
+                this.setState({ Message: WistMassage });
+            }).catch;
     }
 
     render() {
@@ -46,7 +53,7 @@ export default class LogIn extends React.Component {
             <div className="login">
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
                 <button id="take" onClick={this.send}>Log in</button>
-                <h1>Greeting message is: {this.state.Message}</h1>
+                <h1>Massage: {this.state.Message}</h1>
                 <img src={this.state.photoSrc} alt="Taken photo" />
             </div>
         );

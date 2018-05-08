@@ -13,7 +13,7 @@ export default class Register extends React.Component {
             photoData: new Blob(),
             photoArray: Array(5).fill(new Blob()),
             photoSrc: '',
-            Message: 'Take photo input your login and send'
+            Message: 'Take photo input your login and send to register.'
         };
     }
 
@@ -61,7 +61,7 @@ export default class Register extends React.Component {
                     WisTMassage = "You are registrated!";
                 if (res.status == 204)
                     WisTMassage = "You have bad photo I don't see you.";
-                this.setState({ Message: WisTMassage });
+                this.setState({ Message: WistMassage });
             });
     }
 

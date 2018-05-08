@@ -26,12 +26,25 @@ namespace WisT.Recognizer.Identifier
         public Label(string Name)
         {
             this.Name = Name;
+            _id = new Identifier(CreateId(Name));
         }
 
         public Label(string Name, IIdentifier Id)
         {
             this.Name = Name; 
             _id = Id;
+        }
+
+        private int CreateId(string name)
+        {
+            int hash = 0;
+            int radix = 1;
+            foreach (char c in name)
+            {
+                hash += radix * c;
+                radix *= 10;
+            }
+            return hash;
         }
     }
 }

@@ -13,6 +13,13 @@ namespace WisT.Recognizer.Identifier
         private double _minDistanse = double.PositiveInfinity;
         private double _transistRateCoefficient = 0.7;
 
+        //Recognizer settings
+        private const int _recognizerRadius = 2;
+        private const int _recognizerNeighbors = 8;
+        private const int _recognizerGridX = 8;
+        private const int _recognizerGridY = 8;
+        private const double _recognizerThreshold = 200;
+
         public Recognizer(IImageStorage imgRepo, ILabelStorage labelRepo)
         {
             _imgRepo = imgRepo;
@@ -46,7 +53,8 @@ namespace WisT.Recognizer.Identifier
                     currentId = current.Id;
                 }
 
-                FaceRecognizer recognizer = new LBPHFaceRecognizer(2, 8, 8, 8, 200);
+                FaceRecognizer recognizer = new LBPHFaceRecognizer(_recognizerRadius, _recognizerNeighbors,
+                    _recognizerGridX, _recognizerGridY, _recognizerThreshold);
 
                 recognizer.Train(compBatch.ToArray(), trainingLabels.ToArray());
 
@@ -59,7 +67,7 @@ namespace WisT.Recognizer.Identifier
                 }
             }
 
-            foreach(var dist in distanses)
+            foreach (var dist in distanses)
             {
                 if (_minDistanse > _transistRateCoefficient * dist && dist != _minDistanse)
                 {

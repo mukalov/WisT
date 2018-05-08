@@ -12,7 +12,8 @@ export default class Register extends React.Component {
             login: '',
             photoData: new Blob(),
             photoArray: Array(5).fill(new Blob()),
-            photoSrc: ''
+            photoSrc: '',
+            Message: 'Take photo input your login and send'
         };
     }
 
@@ -27,7 +28,7 @@ export default class Register extends React.Component {
         this.setState({
             photoData: imageSrc[0],
             photoArray: imageSrc,
-            photoSrc: window.URL.createObjectURL(imageSrc[0])
+            photoSrc: window.URL.createObjectURL(imageSrc[0]),
         });
         console.log(this.state.photoArray);
     }
@@ -49,13 +50,19 @@ export default class Register extends React.Component {
                 console.log(error);
             });
 
-        getResponse = () => {
-            axios.get('api/Registration')
-                .then(res => {
-                    const Message = res.status;
-                    this.setState({ Message });
-                });
-        }
+        this.getResponse();
+    }
+
+    getResponse = () => {
+        var WisTMassage;
+        axios.get('api/Registration')
+            .then(res => {
+                if (res.status == 200)
+                    WisTMassage = "You are registrated!";
+                if (res.status == 204)
+                    WisTMassage = "You have bad photo I don't see you.";
+                this.setState({ Message: WisTMassage });
+            });
     }
 
     render() {
@@ -63,7 +70,7 @@ export default class Register extends React.Component {
             <div className="registr">
                 <LoginField onUpdate={this.onLoginUpdate} />
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
-                <h1>Greeting message is: {this.state.Message}</h1>
+                <h1>Message: {this.state.Message}</h1>
                 <button id="send" onClick={this.send}>Create an account</button>
                 <img src={this.state.photoSrc} alt="Taken photo" />
             </div>

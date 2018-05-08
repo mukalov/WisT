@@ -43,7 +43,7 @@ namespace WisT.DemoWeb.API.Services
                     {
                         await onePhoto.CopyToAsync(memoryStream);
                         var image = new Bitmap(Image.FromStream(memoryStream));
-                        images.Add(new FaceImage(image, pathToHaar));
+                        images.Add(new FaceImage(image, pathToHaar) { Id = login.Id});
                     }
                 }
             }
@@ -58,16 +58,5 @@ namespace WisT.DemoWeb.API.Services
             return response;
         }
 
-        private int StrToId(string name)
-        {
-            int hash = 0;
-            int radix = 1;
-            foreach (char c in name)
-            {
-                hash += radix * c;
-                radix *= 10;
-            }
-            return hash;
-        }
     }
 }

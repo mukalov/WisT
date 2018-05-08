@@ -20,6 +20,8 @@ namespace WisT.Recognizer.Identifier
         private const int _recognizerGridY = 8;
         private const double _recognizerThreshold = 200;
 
+        private const double _requiredDistance = 70;
+
         public Recognizer(IImageStorage imgRepo, ILabelStorage labelRepo)
         {
             _imgRepo = imgRepo;
@@ -74,8 +76,10 @@ namespace WisT.Recognizer.Identifier
                     return new Identifier(-1);
                 }
             }
-
-            return answ;
+            if(_minDistanse < _requiredDistance)
+                return answ;
+            else
+                return new Identifier(-1);
         }
 
         private IImageStorage _imgRepo;

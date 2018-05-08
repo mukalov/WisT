@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\UndetectedFaceException.cs" />
     <Compile Include="FaceImage.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="Label.cs" />

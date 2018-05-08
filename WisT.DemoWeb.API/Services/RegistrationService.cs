@@ -8,6 +8,7 @@ using WisT.DemoWeb.API.DTO;
 using WisT.DemoWeb.FilePersistence;
 using WisT.Recognizer.Contracts;
 using WisT.Recognizer.Identifier;
+using WisT.Recognizer.Identifier.Exceptions;
 
 namespace WisT.DemoWeb.API.Services
 {
@@ -26,7 +27,7 @@ namespace WisT.DemoWeb.API.Services
 
         public async Task<WisTResponse> RegisterAsync(RegistrationInfo userInfo)
         {
-            WisTResponse response = WisTResponse.Registrated;
+            WisTResponse response = WisTResponse.Registered;
             string prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             var detectConfig = _configuration["FaceClassifierPath"];
 
@@ -46,12 +47,9 @@ namespace WisT.DemoWeb.API.Services
                     }
                 }
             }
-            catch (Exception e)
+            catch (UndetectedFaceException)
             {
-                if (e.Message == "UndetectedFaceException")
-                {
-                    response = WisTResponse.NotDetectedFace;
-                }
+                response = WisTResponse.NotDetectedFace;
             }
 
             _imgRepo.Add(images);

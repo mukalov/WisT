@@ -6,6 +6,7 @@ using WisT.DemoWeb.API.DTO;
 using WisT.DemoWeb.FilePersistence;
 using WisT.Recognizer.Contracts;
 using WisT.Recognizer.Identifier;
+using WisT.Recognizer.Identifier.Exceptions;
 
 namespace WisT.DemoWeb.API.Services
 {
@@ -54,10 +55,10 @@ namespace WisT.DemoWeb.API.Services
                 }
                 else
                 {
-                    response= WisTResponse.NoRegistrated;
+                    response= WisTResponse.NotRegistered;
                 }
             }
-            catch
+            catch(UndetectedFaceException)
             {
                 response = WisTResponse.NotDetectedFace;
             }

@@ -24,13 +24,6 @@ export default class Register extends React.Component {
 
     onPhotoUpdate = (imageSrc) => {
 
-        //var ph = this.state.photoArray;
-        //for (var i = 0; i < 5; i++) {
-
-        //    ph[i] = new Blob();
-        //    ph[i] = imageSrc;
-        //}
-        //console.log(ph);
         this.setState({
             photoData: imageSrc[0],
             photoArray: imageSrc,
@@ -45,7 +38,7 @@ export default class Register extends React.Component {
         for (var i = 0; i < 5; i++) {
             data.append('Photoes', this.state.photoArray[i]);
         }
-        
+
         data.append('Login', this.state.login);
 
         axios.post('api/Registration', data)
@@ -55,6 +48,14 @@ export default class Register extends React.Component {
             .catch((error) => {
                 console.log(error);
             });
+
+        getResponse = () => {
+            axios.get('api/Registration')
+                .then(res => {
+                    const Message = res.status;
+                    this.setState({ Message });
+                });
+        }
     }
 
     render() {
@@ -62,6 +63,7 @@ export default class Register extends React.Component {
             <div className="registr">
                 <LoginField onUpdate={this.onLoginUpdate} />
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
+                <h1>Greeting message is: {this.state.Message}</h1>
                 <button id="send" onClick={this.send}>Create an account</button>
                 <img src={this.state.photoSrc} alt="Taken photo" />
             </div>

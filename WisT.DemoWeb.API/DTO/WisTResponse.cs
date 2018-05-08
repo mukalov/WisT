@@ -11,6 +11,6 @@ namespace WisT.DemoWeb.API.DTO
        NotDetectedFace,
        NotRegistered,
        Recognized,
-       Registered
-    }
+       Registered,
+}
 }

@@ -33,11 +33,20 @@ export default class LogIn extends React.Component {
             });
     }
 
+    getResponse = () => {
+        axios.get('api/Login')
+            .then(res => {
+            const Message = res.status;
+            this.setState({ Message });
+        });
+    }
+
     render() {
         return (
             <div className="login">
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
                 <button id="take" onClick={this.send}>Log in</button>
+                <h1>Greeting message is: {this.state.Message}</h1>
                 <img src={this.state.photoSrc} alt="Taken photo" />
             </div>
         );

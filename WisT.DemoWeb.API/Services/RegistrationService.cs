@@ -57,5 +57,17 @@ namespace WisT.DemoWeb.API.Services
 
             return response;
         }
+
+        private int StrToId(string name)
+        {
+            int hash = 0;
+            int radix = 1;
+            foreach (char c in name)
+            {
+                hash += radix * c;
+                radix *= 10;
+            }
+            return hash;
+        }
     }
 }

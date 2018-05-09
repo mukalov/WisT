@@ -8,21 +8,21 @@ export default class NavBar extends React.Component {
         super(props);
     }
 
-    register = () =>
-    {
+    register = () => {
         ReactDOM.render(<Register />, document.getElementById('app'));
     }
 
-    sign_in = () =>
-    {
+    sign_in = () => {
         ReactDOM.render(<LogIn />, document.getElementById('app'));
     }
 
     render() {
         return (
             <ul className="nav_bar">
+                
                 <li ><a onClick={this.register}>Create an account</a></li>
                 <li><a onClick={this.sign_in}>Sign In</a></li>
+                <li id="wist"><p> WisT </p></li>
             </ul>
         );
     }

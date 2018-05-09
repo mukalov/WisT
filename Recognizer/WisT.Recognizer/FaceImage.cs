@@ -4,6 +4,7 @@ using WisT.Recognizer.Contracts;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using System.IO;
+using WisT.Recognizer.Identifier.Exceptions;
 
 namespace WisT.Recognizer.Identifier
 {
@@ -11,6 +12,17 @@ namespace WisT.Recognizer.Identifier
     {
         public Bitmap ImageOfFace { get; set; }
         public IIdentifier Id { get; set; }
+
+        public FaceImage(Bitmap img)
+        {
+            ImageOfFace = img;
+        }
+
+        public FaceImage(Bitmap img, IIdentifier Id)
+        {
+            ImageOfFace = img;
+            this.Id = Id;
+        }
 
         public FaceImage(Bitmap img, string path_haar)
         {        
@@ -28,9 +40,9 @@ namespace WisT.Recognizer.Identifier
 
             if (Face.Length == 0) 
             {
-                throw new Exception("UndetectedFaceException");
+                throw new UndetectedFaceException();
             }
-                Image<Gray, Byte> detectedFace = detectionImage.Copy(Face[0]);
+            Image<Gray, Byte> detectedFace = detectionImage.Copy(Face[0]);
 
             return detectedFace.Bitmap;
         }

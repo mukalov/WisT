@@ -1,30 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
+using WisT.DemoWeb.API.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace WisT.DemoWeb.API.Controllers
 {
     [Route("api/[controller]")]
-   public class RegistrationController
+    public class RegistrationController : Controller
     {
-        [HttpPost]
-        public async Task Post(RegistrationInfo userInfo)
+        private IRegistrationService _registrationService;
+
+        public RegistrationController(IRegistrationService registrationService)
         {
-            var images = new List<Bitmap>();
-            using (var memoryStream = new MemoryStream())
+            _registrationService = registrationService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(RegistrationInfo userInfo)
+        {
+            var checkResult = await _registrationService.RegisterAsync(userInfo);
+            if (checkResult == WisTResponse.Registered)
             {
-                foreach (var onePhoto in userInfo.Photoes)
-                {
-                    await onePhoto.CopyToAsync(memoryStream);
-                    var image = Image.FromStream(memoryStream);
-                    images.Add(new Bitmap(image));
-                }
+                return Ok();
             }
-            var login = userInfo.Login;
-            //TO DO
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

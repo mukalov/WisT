@@ -23,7 +23,6 @@ export default class LogIn extends React.Component {
     send = () => {
         let data = new FormData();
         data.append('Photo', this.state.photoData);
-        
 
         axios.post('api/Login', data)
             .then((response) => {
@@ -36,6 +35,7 @@ export default class LogIn extends React.Component {
     }
 
     getResponse = () => {
+        var WisTMassage;
         axios.get('api/Login')
             .then(res => {
                 if (res.status == 200)
@@ -44,7 +44,7 @@ export default class LogIn extends React.Component {
                     WisTMassage = "You have bad photo I don't see you.";
                 if (res.status >= 400)
                     WisTMassage = "You are not logined";
-                this.setState({ Message: WistMassage });
+                this.setState({ Message: WisTMassage });
             }).catch;
     }
 
@@ -52,9 +52,9 @@ export default class LogIn extends React.Component {
         return (
             <div className="login">
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
-                <button id="take" onClick={this.send}>Log in</button>
-                <h1>Massage: {this.state.Message}</h1>
-                <img src={this.state.photoSrc} alt="Taken photo" />
+                <h1 className="message">Massage: {this.state.Message}</h1>
+                <img className="image" src={this.state.photoSrc} alt="Taken photo" />
+                <button className="send" onClick={this.send}>Log in</button>
             </div>
         );
     }

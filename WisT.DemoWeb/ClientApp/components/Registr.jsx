@@ -42,12 +42,19 @@ export default class Register extends React.Component {
 
         data.append('Login', this.state.login);
 
+        var WisTMassage;
+
         axios.post('api/Registration', data)
             .then((response) => {
                 console.log(response);
             })
             .catch((error) => {
-                console.log(error);
+                if (error.response) {
+                    if (error.response.status == 400) {
+                        WisTMassage = "You have bad photo I don't see you.";
+                    }
+                    this.setState({ Message: WisTMassage });
+                }
             });
 
         this.getResponse();
@@ -56,12 +63,14 @@ export default class Register extends React.Component {
     getResponse = () => {
         var WisTMassage;
         axios.get('api/Registration')
-            .then(res => {
-                if (res.status == 200)
+            .then((response) => {
+                if (response.status == 200) {
                     WisTMassage = "You are registrated!";
-                if (res.status == 204)
-                    WisTMassage = "You have bad photo I don't see you.";
-                this.setState({ Message: WistMassage });
+                }
+                this.setState({ Message: WisTMassage });
+            })
+            .catch((error) => {
+                console.log(error)
             });
     }
 
@@ -70,9 +79,9 @@ export default class Register extends React.Component {
             <div className="registr">
                 <LoginField onUpdate={this.onLoginUpdate} />
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
-                <h1>Message: {this.state.Message}</h1>
-                <button id="send" onClick={this.send}>Create an account</button>
-                <img src={this.state.photoSrc} alt="Taken photo" />
+                <h1 className="response">Message: {this.state.Message}</h1>
+                <img className="image" src={this.state.photoSrc} alt="Taken photo" />
+                <button className="send" onClick={this.send}>Create an account</button>
             </div>
         );
     }

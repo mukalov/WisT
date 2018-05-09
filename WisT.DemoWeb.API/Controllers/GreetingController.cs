@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WisT.DemoWeb.API.DTO;
-using WisT.DemoWeb.API.Services;
 
 namespace WisT.DemoWeb.API.Controllers
 {

@@ -23,29 +23,23 @@ export default class LogIn extends React.Component {
     send = () => {
         let data = new FormData();
         data.append('Photo', this.state.photoData);
-
+        var WisTMassage;
         axios.post('api/Login', data)
             .then((response) => {
+                if (response.status == 200)
+                    WisTMassage = "Welcome, " + response.data + ".";
+                this.setState({ Message: WisTMassage });
                 console.log(response);
             })
             .catch((error) => {
-                console.log(error);
+                if (error.response) {
+                    if (error.response.status == 400) 
+                        WisTMassage = "This photo is bad, I don't see you.";
+                    if (error.response.status == 404)
+                        WisTMassage = "You are not registered.";
+                    this.setState({ Message: WisTMassage });
+                }
             });
-        this.getResponse();
-    }
-
-    getResponse = () => {
-        var WisTMassage;
-        axios.get('api/Login')
-            .then(res => {
-                if (res.status == 200)
-                    WisTMassage = "You are logined!";
-                if (res.status == 204)
-                    WisTMassage = "You have bad photo I don't see you.";
-                if (res.status >= 400)
-                    WisTMassage = "You are not logined";
-                this.setState({ Message: WisTMassage });
-            }).catch;
     }
 
     render() {

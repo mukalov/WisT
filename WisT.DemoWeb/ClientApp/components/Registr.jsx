@@ -11,7 +11,7 @@ export default class Register extends React.Component {
         this.state = {
             login: '',
             photoData: new Blob(),
-            photoArray: Array(5).fill(new Blob()),
+            photoArray: Array(1).fill(new Blob()),
             photoSrc: '',
             Message: 'Take photo input your login and send to register.'
         };
@@ -36,7 +36,7 @@ export default class Register extends React.Component {
     send = () => {
         let data = new FormData();
         console.log(this.state.photoArray);
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < this.state.photoArray.length; i++) {
             data.append('Photoes', this.state.photoArray[i]);
         }
 
@@ -46,31 +46,17 @@ export default class Register extends React.Component {
 
         axios.post('api/Registration', data)
             .then((response) => {
-                console.log(response);
+                if (response.status == 200) 
+                    WisTMassage = "You are registrated.";
+                this.setState({ Message: WisTMassage });
             })
             .catch((error) => {
                 if (error.response) {
                     if (error.response.status == 400) {
-                        WisTMassage = "You have bad photo I don't see you.";
+                        WisTMassage = "This photo is bad, I don't see you.";
                     }
                     this.setState({ Message: WisTMassage });
                 }
-            });
-
-        this.getResponse();
-    }
-
-    getResponse = () => {
-        var WisTMassage;
-        axios.get('api/Registration')
-            .then((response) => {
-                if (response.status == 200) {
-                    WisTMassage = "You are registrated!";
-                }
-                this.setState({ Message: WisTMassage });
-            })
-            .catch((error) => {
-                console.log(error)
             });
     }
 

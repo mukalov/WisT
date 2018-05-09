@@ -27,7 +27,7 @@ namespace WisT.Recognizer.Identifier
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return IdentifingCode;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace WisT.DemoWeb.API.Services
 
         public async Task<WisTResponse> CheckAsync(LoginInfo userInfo)
         {
-            WisTResponse response;
+            WisTResponse response = new WisTResponse();
 
             string prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             var detectConfig = _configuration["FaceClassifierPath"];
@@ -51,16 +51,17 @@ namespace WisT.DemoWeb.API.Services
                 IIdentifier usersId = recognizer.GetIdentity(userFace);
                 if (usersId.IdentifingCode != -1)
                 {
-                    response = WisTResponse.Recognized;
+                    response.Recognized = true;
+                    response.UserName = _labelRepo.Get(usersId).Name;
                 }
                 else
                 {
-                    response= WisTResponse.NotRegistered;
+                    response.NotRegistered = true;
                 }
             }
             catch(UndetectedFaceException)
             {
-                response = WisTResponse.NotDetectedFace;
+                response.NotDetectedFace = true;
             }
             return response;
         }

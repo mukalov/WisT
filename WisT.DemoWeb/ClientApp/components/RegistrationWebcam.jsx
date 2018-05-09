@@ -13,9 +13,9 @@ export default class WebcamComponent extends React.Component {
     }
 
     capture = () => {
-        const imageSrc = new Array(5);
-        for (var i = 0; i < 5; ++i) {
-            imageSrc[i] = dataURLtoBlob(this.webcam.getScreenshot());
+        const imageSrc = new Array();
+        for (var i = 0; i < 1; ++i) {
+            imageSrc.push(dataURLtoBlob(this.webcam.getScreenshot()));
             setInterval(500);
         }
         this.props.onUpdate(imageSrc);

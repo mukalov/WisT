@@ -11,7 +11,7 @@ namespace WisT.DemoWeb.FilePersistence
     {
         private string _prjPath;
         private string _imagesPath;
-        private static int _numOfPhotoes = 5;
+        private static int _numOfPhotoes = 1;
 
         public ImageStorage()
         {

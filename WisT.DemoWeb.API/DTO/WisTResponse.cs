@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace WisT.DemoWeb.API.DTO
 {
-    public enum WisTResponse
+    public class WisTResponse 
     {
-        NotDetectedFace,
-        NotRegistered,
-        Recognized,
-        Registered,
+        public bool NotDetectedFace;
+        public bool NotRegistered;
+        public bool Recognized;
+        public bool Registered;
+        public string UserName;
+
+        public WisTResponse()
+        {
+            NotDetectedFace = false;
+            NotRegistered = false;
+            Recognized = false;
+            Registered = false;
+        }
     }
 }

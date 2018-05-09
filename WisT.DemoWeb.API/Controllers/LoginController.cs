@@ -19,9 +19,9 @@ namespace WisT.DemoWeb.API.Controllers
         public async Task<IActionResult> Post(LoginInfo userInfo)
         {
             var checkResult = await _loginService.CheckAsync(userInfo);
-            if (checkResult == WisTResponse.Recognized)
-                return Ok();
-            if (checkResult == WisTResponse.NotRegistered)
+            if (checkResult.Recognized)
+                return Ok(checkResult.UserName);
+            if (checkResult.NotRegistered)
                 return NotFound();          
             else
                 return BadRequest();

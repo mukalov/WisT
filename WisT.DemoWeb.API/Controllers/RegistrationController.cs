@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
 using WisT.DemoWeb.API.Services;
-using Microsoft.AspNetCore.Http;
 
 namespace WisT.DemoWeb.API.Controllers
 {
@@ -20,7 +19,7 @@ namespace WisT.DemoWeb.API.Controllers
         public async Task<IActionResult> Post(RegistrationInfo userInfo)
         {
             var checkResult = await _registrationService.RegisterAsync(userInfo);
-            if (checkResult == WisTResponse.Registered)
+            if (checkResult.Registered)
             {
                 return Ok();
             }

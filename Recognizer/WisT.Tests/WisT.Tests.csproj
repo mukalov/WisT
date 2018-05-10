@@ -61,7 +61,6 @@
     <Compile Include="LabelStorageMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecognizerTests.cs" />
-    <Compile Include="LabelFileStorageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

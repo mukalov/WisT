@@ -9,7 +9,7 @@ export default class LogIn extends React.Component {
         this.state = {
             photoData: new Blob(),
             photoSrc: '',
-            Message: 'Take photo and send to login.'
+            message: 'Take photo and send to login.'
         };
     }
 
@@ -23,21 +23,21 @@ export default class LogIn extends React.Component {
     send = () => {
         let data = new FormData();
         data.append('Photo', this.state.photoData);
-        var WisTMassage;
+        let wisTMessage;
         axios.post('api/Login', data)
             .then((response) => {
                 if (response.status == 200)
-                    WisTMassage = "Welcome, " + response.data + ".";
-                this.setState({ Message: WisTMassage });
+                    wisTMessage = "Welcome, " + response.data + ".";
+                this.setState({ message: wisTMessage });
                 console.log(response);
             })
             .catch((error) => {
                 if (error.response) {
                     if (error.response.status == 400) 
-                        WisTMassage = "This photo is bad, I don't see you.";
+                        wisTMessage = "This photo is bad, I don't see you.";
                     if (error.response.status == 404)
-                        WisTMassage = "You are not registered.";
-                    this.setState({ Message: WisTMassage });
+                        wisTMessage = "You are not registered.";
+                    this.setState({ message: wisTMessage });
                 }
             });
     }
@@ -46,7 +46,7 @@ export default class LogIn extends React.Component {
         return (
             <div className="login">
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
-                <h1 className="message">Massage: {this.state.Message}</h1>
+                <h1 className="message">Massage: {this.state.message}</h1>
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
                 <button className="send" onClick={this.send}>Log in</button>
             </div>

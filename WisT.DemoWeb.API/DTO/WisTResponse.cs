@@ -8,18 +8,24 @@ namespace WisT.DemoWeb.API.DTO
 {
     public class WisTResponse 
     {
-        public bool NotDetectedFace;
-        public bool NotRegistered;
-        public bool Recognized;
-        public bool Registered;
+        private bool _notDetectedFace;
+        private bool _notRegistered;
+        private bool _recognized;
+        private bool _registered;
+
         public string UserName;
+
+        public static WisTResponse NotDetectedFace { get { return new WisTResponse() { _notDetectedFace = true }; } }
+        public static WisTResponse NotRegistered { get { return new WisTResponse() { _notRegistered = true }; } }
+        public static WisTResponse Recognized { get {return new WisTResponse() { _recognized = true }; } }
+        public static WisTResponse Registered { get { return new WisTResponse() { _registered = true }; } }
 
         public WisTResponse()
         {
-            NotDetectedFace = false;
-            NotRegistered = false;
-            Recognized = false;
-            Registered = false;
+            _notDetectedFace = false;
+            _notRegistered = false;
+            _recognized = false;
+            _registered = false;
         }
     }
 }

@@ -19,14 +19,10 @@ namespace WisT.DemoWeb.API.Controllers
         public async Task<IActionResult> Post(RegistrationInfo userInfo)
         {
             var checkResult = await _registrationService.RegisterAsync(userInfo);
-            if (checkResult.Registered)
-            {
+            if (checkResult == WisTResponse.Registered)
                 return Ok();
-            }
             else
-            {
                 return BadRequest();
-            }
         }
     }
 }

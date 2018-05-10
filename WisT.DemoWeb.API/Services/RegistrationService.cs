@@ -25,11 +25,11 @@ namespace WisT.DemoWeb.API.Services
 
         public async Task<WisTResponse> RegisterAsync(RegistrationInfo userInfo)
         {
-            var response = new WisTResponse() { Registered = true};
+            WisTResponse response = WisTResponse.Registered;
             string prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             var detectConfig = _configuration["FaceClassifierPath"];
 
-            var pathToHaar = prjPath + detectConfig;
+            var pathToHaar = Path.Combine(prjPath, detectConfig);
 
             var images = new List<FaceImage>();
             var login = new Label(userInfo.Login);
@@ -47,8 +47,7 @@ namespace WisT.DemoWeb.API.Services
             }
             catch (UndetectedFaceException)
             {
-                response.Registered = false;
-                response.NotDetectedFace = true;
+                response = WisTResponse.NotDetectedFace;
                 return response;
             }
 

@@ -13,7 +13,7 @@ export default class Register extends React.Component {
             photoData: new Blob(),
             photoArray: Array(1).fill(new Blob()),
             photoSrc: '',
-            Message: 'Take photo input your login and send to register.'
+            message: 'Take photo input your login and send to register.'
         };
     }
 
@@ -36,26 +36,26 @@ export default class Register extends React.Component {
     send = () => {
         let data = new FormData();
         console.log(this.state.photoArray);
-        for (var i = 0; i < this.state.photoArray.length; i++) {
+        for (let i = 0; i < this.state.photoArray.length; i++) {
             data.append('Photoes', this.state.photoArray[i]);
         }
 
         data.append('Login', this.state.login);
 
-        var WisTMassage;
+        let wisTMessage;
 
         axios.post('api/Registration', data)
             .then((response) => {
                 if (response.status == 200) 
-                    WisTMassage = "You are registrated.";
-                this.setState({ Message: WisTMassage });
+                    wisTMessage = "You are registrated.";
+                this.setState({ message: wisTMessage });
             })
             .catch((error) => {
                 if (error.response) {
                     if (error.response.status == 400) {
-                        WisTMassage = "This photo is bad, I don't see you.";
+                        wisTMessage = "This photo is bad, I don't see you.";
                     }
-                    this.setState({ Message: WisTMassage });
+                    this.setState({ message: wisTMessage });
                 }
             });
     }
@@ -65,7 +65,7 @@ export default class Register extends React.Component {
             <div className="registr">
                 <LoginField onUpdate={this.onLoginUpdate} />
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
-                <h1 className="response">Message: {this.state.Message}</h1>
+                <h1 className="response">Message: {this.state.message}</h1>
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
                 <button className="send" onClick={this.send}>Create an account</button>
             </div>

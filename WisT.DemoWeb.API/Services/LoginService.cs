@@ -25,14 +25,14 @@ namespace WisT.DemoWeb.API.Services
 
         public async Task<WisTResponse> CheckAsync(LoginInfo userInfo)
         {
-            WisTResponse response = new WisTResponse();
+            WisTResponse response;
 
             string prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             var detectConfig = _configuration["FaceClassifierPath"];
             var recognizeConfig = _configuration["TransistRateCoefficient"];
 
             var transistRateCoefficient = double.Parse(recognizeConfig);
-            var pathToHaar = prjPath + detectConfig;
+            var pathToHaar = Path.Combine(prjPath, detectConfig);
 
             Bitmap image;
             using (var memoryStream = new MemoryStream())
@@ -51,17 +51,17 @@ namespace WisT.DemoWeb.API.Services
                 IIdentifier usersId = recognizer.GetIdentity(userFace);
                 if (usersId.IdentifingCode != -1)
                 {
-                    response.Recognized = true;
+                    response = WisTResponse.Recognized;
                     response.UserName = _labelRepo.Get(usersId).Name;
                 }
                 else
                 {
-                    response.NotRegistered = true;
+                    response = WisTResponse.NotRegistered;
                 }
             }
             catch(UndetectedFaceException)
             {
-                response.NotDetectedFace = true;
+                response = WisTResponse.NotDetectedFace;
             }
             return response;
         }

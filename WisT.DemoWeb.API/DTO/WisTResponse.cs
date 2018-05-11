@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WisT.DemoWeb.API.DTO
 {
-    public class WisTResponse 
+    public class WisTResponse : IEquatable<WisTResponse>
     {
         enum WisTStatus
         {
@@ -27,13 +23,12 @@ namespace WisT.DemoWeb.API.DTO
 
         public WisTResponse() { }
 
-        public override bool Equals(Object obj)
+        public bool Equals(WisTResponse other)
         {
-            if (obj == null || GetType() != obj.GetType())
+            if (other == null)
                 return false;
 
-            var value = obj as WisTResponse;
-            return (_status == value._status);
+            return (_status == other._status);
         }
     }
 }

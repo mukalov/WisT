@@ -8,24 +8,23 @@ namespace WisT.DemoWeb.API.DTO
 {
     public class WisTResponse 
     {
-        private bool _notDetectedFace;
-        private bool _notRegistered;
-        private bool _recognized;
-        private bool _registered;
+        enum WisTStatus
+        {
+            NotDetectedFace,
+            NotRegistered,
+            Recognized,
+            Registered
+        }
+
+        private WisTStatus _status;
 
         public string UserName;
 
-        public static WisTResponse NotDetectedFace { get { return new WisTResponse() { _notDetectedFace = true }; } }
-        public static WisTResponse NotRegistered { get { return new WisTResponse() { _notRegistered = true }; } }
-        public static WisTResponse Recognized { get {return new WisTResponse() { _recognized = true }; } }
-        public static WisTResponse Registered { get { return new WisTResponse() { _registered = true }; } }
+        public static WisTResponse NotDetectedFace { get { return new WisTResponse() { _status = WisTStatus.NotDetectedFace }; } }
+        public static WisTResponse NotRegistered { get { return new WisTResponse() { _status = WisTStatus.NotRegistered }; } }
+        public static WisTResponse Recognized { get {return new WisTResponse() { _status = WisTStatus.Recognized }; } }
+        public static WisTResponse Registered { get { return new WisTResponse() { _status = WisTStatus.Registered }; } }
 
-        public WisTResponse()
-        {
-            _notDetectedFace = false;
-            _notRegistered = false;
-            _recognized = false;
-            _registered = false;
-        }
+        public WisTResponse() { }
     }
 }

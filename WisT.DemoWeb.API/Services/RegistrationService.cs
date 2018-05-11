@@ -29,7 +29,7 @@ namespace WisT.DemoWeb.API.Services
             string prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             var detectConfig = _configuration["FaceClassifierPath"];
 
-            var pathToHaar = Path.Combine(prjPath, detectConfig);
+            var pathToHaar = string.Concat(prjPath, detectConfig);
 
             var images = new List<FaceImage>();
             var login = new Label(userInfo.Login);

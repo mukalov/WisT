@@ -26,5 +26,14 @@ namespace WisT.DemoWeb.API.DTO
         public static WisTResponse Registered { get { return new WisTResponse() { _status = WisTStatus.Registered }; } }
 
         public WisTResponse() { }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            var value = obj as WisTResponse;
+            return (_status == value._status);
+        }
     }
 }

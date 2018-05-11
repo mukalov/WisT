@@ -32,7 +32,7 @@ namespace WisT.DemoWeb.API.Services
             var recognizeConfig = _configuration["TransistRateCoefficient"];
 
             var transistRateCoefficient = double.Parse(recognizeConfig);
-            var pathToHaar = Path.Combine(prjPath, detectConfig);
+            var pathToHaar = string.Concat(prjPath, detectConfig);
 
             Bitmap image;
             using (var memoryStream = new MemoryStream())

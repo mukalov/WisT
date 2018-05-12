@@ -30,7 +30,7 @@ namespace WisT.Tests
         {
             var path = RepoPath + @"\Recognizer\TestSample\TestPerson" + (id.IdentifingCode + 1).ToString() + @"\TestBatch";
 
-            var haarPath = RepoPath + @"\Recognizer\haarcascade_frontalface_default.xml";
+            var haarPath = RepoPath + @"\DTO\haarcascade_frontalface_alt.xml";
             var samplePathes = Directory.GetFiles(path);
             List<FaceImage> Batch = new List<FaceImage>();
             foreach (var imagePath in samplePathes)

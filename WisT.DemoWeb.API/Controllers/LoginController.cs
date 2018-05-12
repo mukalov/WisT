@@ -1,25 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Drawing;
-using System.IO;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
+using WisT.DemoWeb.API.Services;
 
 namespace WisT.DemoWeb.API.Controllers
 {
     [Route("api/[controller]")]
     public class LoginController : Controller
     {
-        [HttpPost]
-        public async Task Post(LoginInfo userInfo)
-        {
-            Bitmap image;
-            using (var memoryStream = new MemoryStream())
-            {
-                await userInfo.Photo.CopyToAsync(memoryStream);
-                image = new Bitmap(Image.FromStream(memoryStream));
-            }
+        private ILoginService _loginService;
 
-            //TO DO
+        public LoginController(ILoginService loginService)
+        {
+            _loginService = loginService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(LoginInfo userInfo)
+        {
+            var checkResult = await _loginService.CheckAsync(userInfo);
+            if (checkResult.Equals(WisTResponse.Recognized))
+                return Ok(checkResult.UserName);
+            if (checkResult.Equals(WisTResponse.NotRegistered))
+                return NotFound();          
+            else
+                return BadRequest();
         }
     }
 }

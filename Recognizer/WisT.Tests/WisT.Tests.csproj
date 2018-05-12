@@ -63,9 +63,14 @@
     <Compile Include="RecognizerTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\WisT.DemoWeb.FilePersistence\WisT.DemoWeb.FilePersistence.csproj">
+      <Project>{86be0104-72f1-4ef6-81b3-eae45e9a61d3}</Project>
+      <Name>WisT.DemoWeb.FilePersistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wist.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj">
       <Project>{a7e46900-a6e2-4718-b1da-41b5e52a6299}</Project>
       <Name>WisT.Recognizer.Contracts</Name>

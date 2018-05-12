@@ -4,7 +4,7 @@ import axios from 'axios';
 export default class Greeting extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { greetingMessage: "Initial Message" };
+        this.state = { greetingMessage: "" };
     }
 
     componentDidMount() {
@@ -18,7 +18,7 @@ export default class Greeting extends React.Component {
     render() {
         return (
             <div className="greeting"> 
-                <h1>Greeting message is: {this.state.greetingMessage}</h1>
+                <h1>{this.state.greetingMessage}</h1>
             </div>
         );
     }

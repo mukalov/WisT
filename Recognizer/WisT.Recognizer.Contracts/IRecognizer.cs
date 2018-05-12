@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WisT.Recognizer.Contracts
+﻿namespace WisT.Recognizer.Contracts
 {
     public interface IRecognizer
     {

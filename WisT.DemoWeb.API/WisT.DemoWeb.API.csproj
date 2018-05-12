@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.5" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.0-rc1-final" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
   </ItemGroup>
@@ -15,8 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Recognizer\Wist.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj" />
     <ProjectReference Include="..\Recognizer\Wist.Recognizer\WisT.Recognizer.Identifier.csproj" />
-    <ProjectReference Include="..\WisT.DemoWeb.FilePersistence\WisT.DemoWeb.FilePersistence.csproj" />
-    <ProjectReference Include="..\WisT.DemoWeb.Persistence\WisT.DemoWeb.Persistence.csproj" />
+    <ProjectReference Include="..\WisT.DemoWeb.Persistence\WisT.DemoWeb.Persistence.Control.csproj" />
   </ItemGroup>
 
 </Project>

@@ -21,6 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="App.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="App.config" />
     <None Include="ClientApp\components\Greeting.jsx" />
   </ItemGroup>
 

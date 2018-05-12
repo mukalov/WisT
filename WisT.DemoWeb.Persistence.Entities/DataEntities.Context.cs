@@ -7,12 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
 namespace WisT.DemoWeb.Persistence.DataEntities
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
+
+
     public partial class WisTEntities : DbContext
     {
         public WisTEntities()

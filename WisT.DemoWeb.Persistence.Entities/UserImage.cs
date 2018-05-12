@@ -6,15 +6,12 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using System.Drawing.Imaging;
+using System.IO;
 using WisT.Recognizer.Contracts;
 
 namespace WisT.DemoWeb.Persistence.DataEntities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing.Imaging;
-    using System.IO;
-
     public partial class UserImage
     {
         public UserImage()

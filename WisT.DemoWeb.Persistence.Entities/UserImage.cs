@@ -6,12 +6,30 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using WisT.Recognizer.Contracts;
 
 namespace WisT.DemoWeb.Persistence.DataEntities
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing.Imaging;
+    using System.IO;
 
     public partial class UserImage
     {
+        public UserImage()
+        {
+        }
+        public UserImage(IFaceImage faceImage)
+        {
+            this.Id = faceImage.Id.IdentifingCode;
+
+            MemoryStream memoryStream = new MemoryStream();
+            faceImage.ImageOfFace.Save(memoryStream, ImageFormat.Bmp);
+            byte[] image = memoryStream.ToArray();
+
+            this.Image = image;
+        }
         public int ImageId { get; set; }
         public int Id { get; set; }
         public byte[] Image { get; set; }

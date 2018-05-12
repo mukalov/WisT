@@ -7,11 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using WisT.Recognizer.Contracts;
-
 namespace WisT.DemoWeb.Persistence.DataEntities
 {
+    using WisT.Recognizer.Contracts;
+    using System;
+    using System.Collections.Generic;
+    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,6 @@ namespace WisT.DemoWeb.Persistence.DataEntities
         }
         public User(ILabel label)
         {
-            this.Id = label.Id.IdentifingCode;
             this.Name = label.Name;
             this.UserImages = new HashSet<UserImage>();
         }

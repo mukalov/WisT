@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WisT.DemoWeb.API.Services;
-using WisT.DemoWeb.FilePersistence;
+using WisT.DemoWeb.Persistence.Control;
 using WisT.Recognizer.Contracts;
 
 namespace WisT.DemoWeb.API.DependenciesResolver

@@ -24,8 +24,13 @@ namespace WisT.Recognizer.Identifier
             this.Id = Id;
         }
 
-        public FaceImage(Bitmap img, string path_haar)
+        public FaceImage(Bitmap img, string path_haar, IIdentifier id)
         {        
+            ImageOfFace = new Bitmap(DetectFace(img, path_haar), new Size(_faceHeight, _faceWeight));
+            Id = id;
+        }
+        public FaceImage(Bitmap img, string path_haar)
+        {
             ImageOfFace = new Bitmap(DetectFace(img, path_haar), new Size(_faceHeight, _faceWeight));
         }
 

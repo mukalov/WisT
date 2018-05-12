@@ -3,7 +3,6 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
-using WisT.DemoWeb.FilePersistence;
 using WisT.Recognizer.Contracts;
 using WisT.Recognizer.Identifier;
 using WisT.Recognizer.Identifier.Exceptions;

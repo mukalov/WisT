@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WisT.DemoWeb.Persistence.Control.Excepsions;
 using WisT.DemoWeb.Persistence.DataEntities;
 using WisT.Recognizer.Contracts;
+using WisT.Recognizer.Identifier;
 
 namespace WisT.DemoWeb.Persistence.Control
 {
@@ -12,15 +14,19 @@ namespace WisT.DemoWeb.Persistence.Control
         {
             using (WisTEntities context = new WisTEntities())
             {
+                User user = new User(addObj);
+
+                context.Users.Add(user);
                 try
                 {
-                    context.Users.Add(new User(addObj));
                     context.SaveChanges();
                 }
                 catch
                 {
-                    throw new Exception("AddExistingUserException");
+                    throw new AddExistingUserException();
                 }
+
+                addObj.Id = new Identifier(user.Id);
             }
         }
         public void Delete(IIdentifier id)
@@ -41,7 +47,7 @@ namespace WisT.DemoWeb.Persistence.Control
                 }
                 catch
                 {
-                    throw new Exception("LablelNotStoredException");
+                    throw new LablelNotStoredException();
                 }
             }
 
@@ -60,7 +66,7 @@ namespace WisT.DemoWeb.Persistence.Control
                 }
                 catch
                 {
-                    throw new Exception("NoStoredLabelsException");
+                    throw new NoStoredLabelsException();
                 }
 
                 foreach (var user in users)

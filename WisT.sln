@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb", "WisT.DemoWe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.API", "WisT.DemoWeb.API\WisT.DemoWeb.API.csproj", "{3C5256B4-3BD4-4279-88B9-41AB32D06503}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.Persistence", "WisT.DemoWeb.Persistence\WisT.DemoWeb.Persistence.csproj", "{657F6DED-146F-4054-8E1C-2CA0E9A77504}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recognizer", "Recognizer", "{980E2F88-D962-4B31-8F44-E934B0B846A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WisT.Recognizer.Contracts", "Recognizer\Wist.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj", "{A7E46900-A6E2-4718-B1DA-41B5E52A6299}"
@@ -33,10 +31,6 @@ Global
 		{3C5256B4-3BD4-4279-88B9-41AB32D06503}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C5256B4-3BD4-4279-88B9-41AB32D06503}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C5256B4-3BD4-4279-88B9-41AB32D06503}.Release|Any CPU.Build.0 = Release|Any CPU
-		{657F6DED-146F-4054-8E1C-2CA0E9A77504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{657F6DED-146F-4054-8E1C-2CA0E9A77504}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{657F6DED-146F-4054-8E1C-2CA0E9A77504}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{657F6DED-146F-4054-8E1C-2CA0E9A77504}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7E46900-A6E2-4718-B1DA-41B5E52A6299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7E46900-A6E2-4718-B1DA-41B5E52A6299}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E46900-A6E2-4718-B1DA-41B5E52A6299}.Release|Any CPU.ActiveCfg = Release|Any CPU

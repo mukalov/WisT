@@ -9,7 +9,8 @@ export default class LogIn extends React.Component {
         this.state = {
             photoData: new Blob(),
             photoSrc: '',
-            message: 'Take photo and send to login.'
+            message: 'Take photo and send to login.',
+            isDisabled: false
         };
     }
 
@@ -21,6 +22,7 @@ export default class LogIn extends React.Component {
     }
 
     send = () => {
+        this.setState({ isDisabled: true });
         let data = new FormData();
         data.append('Photo', this.state.photoData);
         let wisTMessage;
@@ -33,10 +35,14 @@ export default class LogIn extends React.Component {
             })
             .catch((error) => {
                 if (error.response) {
-                    if (error.response.status == 400) 
+                    if (error.response.status == 400) {
                         wisTMessage = "This photo is bad, I don't see you.";
-                    if (error.response.status == 404)
+                        this.setState({ isDisabled: false });
+                    }
+                    if (error.response.status == 404) {
                         wisTMessage = "You are not registered.";
+                        this.setState({ isDisabled: false });
+                    }
                     this.setState({ message: wisTMessage });
                 }
             });
@@ -48,7 +54,7 @@ export default class LogIn extends React.Component {
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
                 <h1 className="message">Massage: {this.state.message}</h1>
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
-                <button className="send" onClick={this.send}>Log in</button>
+                <button ref="btn" className="send" onClick={this.send}>Log in</button>
             </div>
         );
     }

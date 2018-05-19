@@ -28,7 +28,8 @@ namespace WisT.DemoWeb.API.Services
             WisTResponse response = WisTResponse.Registered;
             string prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             var detectConfig = _configuration["FaceClassifierPath"];
-
+            var recognizeConfig = _configuration["TransistRateCoefficient"];
+            var transistRateCoefficient = double.Parse(recognizeConfig);
             var pathToHaar = string.Concat(prjPath, detectConfig);
 
             var images = new List<FaceImage>();

@@ -13,7 +13,8 @@ export default class Register extends React.Component {
             photoData: new Blob(),
             photoArray: Array(1).fill(new Blob()),
             photoSrc: '',
-            message: 'Take photo input your login and send to register.'
+            message: 'Take photo input your login and send to register.',
+            isDisabled:false
         };
     }
 
@@ -34,7 +35,8 @@ export default class Register extends React.Component {
     }
 
     send = () => {
-        let data = new FormData();
+         this.setState({ isDisabled: true });
+         let data = new FormData();
         console.log(this.state.photoArray);
         for (let i = 0; i < this.state.photoArray.length; i++) {
             data.append('Photoes', this.state.photoArray[i]);
@@ -46,14 +48,17 @@ export default class Register extends React.Component {
 
         axios.post('api/Registration', data)
             .then((response) => {
-                if (response.status == 200) 
+                if (response.status == 200) {
                     wisTMessage = "You are registrated.";
+                    this.setState({ isDisabled: false });
+                }
                 this.setState({ message: wisTMessage });
             })
             .catch((error) => {
                 if (error.response) {
                     if (error.response.status == 400) {
                         wisTMessage = "This photo is bad, I don't see you.";
+                        this.setState({ isDisabled: false });
                     }
                     this.setState({ message: wisTMessage });
                 }
@@ -67,7 +72,7 @@ export default class Register extends React.Component {
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
                 <h1 className="response">Message: {this.state.message}</h1>
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
-                <button className="send" onClick={this.send}>Create an account</button>
+                <button disabled={this.state.isDisabled} className="send" onClick={this.send}>Create an account</button>
             </div>
         );
     }

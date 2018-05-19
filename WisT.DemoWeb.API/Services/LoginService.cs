@@ -31,7 +31,7 @@ namespace WisT.DemoWeb.API.Services
             var detectConfig = _configuration["FaceClassifierPath"];
             var recognizeConfig = _configuration["TransistRateCoefficient"];
 
-            var transistRateCoefficient = double.Parse(recognizeConfig);
+            var transistRateCoefficient = 0.9;
             var pathToHaar = string.Concat(prjPath, detectConfig);
 
             Bitmap image;

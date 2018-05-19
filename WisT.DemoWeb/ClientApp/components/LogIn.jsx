@@ -54,7 +54,7 @@ export default class LogIn extends React.Component {
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
                 <h1 className="message">Massage: {this.state.message}</h1>
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
-                <button ref="btn" className="send" onClick={this.send}>Log in</button>
+                <button ref="btn" className="send" onClick={this.send} disabled={this.state.isDisabled}>Log in</button>
             </div>
         );
     }

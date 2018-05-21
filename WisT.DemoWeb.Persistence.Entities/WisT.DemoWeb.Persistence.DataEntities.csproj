@@ -59,6 +59,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserImage.cs" />
     <Compile Include="WisTEntities.cs" />

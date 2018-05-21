@@ -10,6 +10,7 @@ namespace WisT.DemoWeb.Persistence.DataEntities
         public WisTEntities()
             : base("name=WisTEntities")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<WisTEntities, Migrations.Configuration>());
         }
 
         public virtual DbSet<UserImage> UserImages { get; set; }

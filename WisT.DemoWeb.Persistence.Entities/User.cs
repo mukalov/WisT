@@ -11,7 +11,8 @@ namespace WisT.DemoWeb.Persistence.DataEntities
         {
             UserImages = new HashSet<UserImage>();
         }
-
+        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required]

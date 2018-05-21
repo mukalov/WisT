@@ -8,9 +8,12 @@ namespace WisT.DemoWeb.Persistence.DataEntities
 {
     public partial class UserImage
     {
+        [Required]
         [Key]
         public int ImageId { get; set; }
 
+        [Required]
+        [ForeignKey("Id")]
         public int Id { get; set; }
 
         [Column(TypeName = "image")]

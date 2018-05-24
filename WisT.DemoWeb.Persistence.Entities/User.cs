@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using WisT.Recognizer.Contracts;
 
 namespace WisT.DemoWeb.Persistence.DataEntities
@@ -11,14 +12,13 @@ namespace WisT.DemoWeb.Persistence.DataEntities
         {
             UserImages = new HashSet<UserImage>();
         }
-        [Required]
-        [Key]
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
         [StringLength(50)]
+        [Required]
         public string Name { get; set; }
-
 
         public User(ILabel label)
         {

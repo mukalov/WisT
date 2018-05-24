@@ -8,12 +8,9 @@ namespace WisT.DemoWeb.Persistence.DataEntities
 {
     public partial class UserImage
     {
-        [Required]
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ImageId { get; set; }
 
-        [Required]
-        [ForeignKey("Id")]
         public int Id { get; set; }
 
         [Column(TypeName = "image")]
@@ -33,6 +30,8 @@ namespace WisT.DemoWeb.Persistence.DataEntities
 
             Image = image;
         }
+
+        [ForeignKey("Id")]
         public virtual User User { get; set; }
     }
 }

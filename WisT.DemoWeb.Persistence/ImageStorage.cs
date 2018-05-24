@@ -13,12 +13,11 @@ namespace WisT.DemoWeb.Persistence.Control
     public class ImageStorage : IImageStorage
     {
         public void Add(IEnumerable<IFaceImage> addObj)
-
-        {
-            UserImage userImage = new UserImage();
-            
+        {    
             using (WisTEntities context = new WisTEntities())
             {
+                UserImage userImage = new UserImage();
+
                 foreach (var obj in addObj)
                 {
                     userImage = new UserImage(obj);
@@ -42,11 +41,11 @@ namespace WisT.DemoWeb.Persistence.Control
         }
         public IEnumerable<IFaceImage> Get(IIdentifier id)
         {
-            List<IFaceImage> images = new List<IFaceImage>();
-            List<UserImage> userImages = new List<UserImage>();
-
             using (WisTEntities context = new WisTEntities())
             {
+                List<IFaceImage> images = new List<IFaceImage>();
+                List<UserImage> userImages = new List<UserImage>();
+
                 try
                 {
                     userImages = context.UserImages.Where
@@ -63,9 +62,9 @@ namespace WisT.DemoWeb.Persistence.Control
                 {
                     images.Add(new FaceImage(new Bitmap(new MemoryStream(userImage.Image)), new Identifier(userImage.Id)));
                 }
-            }
 
-            return images;
+                return images;
+            }
         }
     }
 }

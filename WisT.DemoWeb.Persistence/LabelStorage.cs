@@ -35,10 +35,10 @@ namespace WisT.DemoWeb.Persistence.Control
         }
         public ILabel Get(IIdentifier id)
         {
-            User user = new User();
-
             using (WisTEntities context = new WisTEntities())
             {
+                User user = new User();
+
                 try
                 {
                     user = context.Users.Where
@@ -49,17 +49,17 @@ namespace WisT.DemoWeb.Persistence.Control
                 {
                     throw new LablelNotStoredException();
                 }
-            }
 
-            return new DatabaseLabel(user); 
+                return new DatabaseLabel(user);
+            }
         }
         public IEnumerable<ILabel> GetAll()
         {
-            List<ILabel> labels = new List<ILabel>();
-            List<User> users = new List<User>();
-
             using (WisTEntities context = new WisTEntities())
             {
+                List<ILabel> labels = new List<ILabel>();
+                List<User> users = new List<User>();
+
                 try
                 {
                     users = context.Users.ToList();
@@ -69,13 +69,10 @@ namespace WisT.DemoWeb.Persistence.Control
                     throw new NoStoredLabelsException();
                 }
 
-                foreach (var user in users)
-                {
-                    labels.Add(new DatabaseLabel(user));
-                }
-            }
+                labels = (List<ILabel>)users.Select(x => new DatabaseLabel(x));
 
-            return labels;
+                return labels;
+            }
         }
     }
 }

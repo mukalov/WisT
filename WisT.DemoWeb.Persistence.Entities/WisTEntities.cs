@@ -1,9 +1,7 @@
+using System.Data.Entity;
+
 namespace WisT.DemoWeb.Persistence.DataEntities
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public partial class WisTEntities : DbContext
     {

@@ -12,13 +12,11 @@ namespace WisT.DemoWeb.API.Services
     public class LoginService : ILoginService
     {
         private IConfiguration _configuration;
-        private IImageStorage _imgRepo;
         private ILabelStorage _labelRepo;
 
-        public LoginService(IConfiguration configuration, IImageStorage imgRepo, ILabelStorage labelRepo)
+        public LoginService(IConfiguration configuration, ILabelStorage labelRepo)
         {
             _configuration = configuration;
-            _imgRepo = imgRepo;
             _labelRepo = labelRepo;
         }
 
@@ -45,7 +43,7 @@ namespace WisT.DemoWeb.API.Services
             try
             {
                 userFace = new FaceImage(image, pathToHaar);
-                var recognizer = new Recognizer.Identifier.Recognizer(_imgRepo, _labelRepo, transistRateCoefficient);
+                var recognizer = new Recognizer.Identifier.Recognizer(_labelRepo, transistRateCoefficient);
 
                 IIdentifier usersId = recognizer.GetIdentity(userFace);
                 if (usersId.IdentifingCode != -1)

@@ -8,9 +8,6 @@ namespace WisT.DemoWeb.Persistence.DataEntities
 {
     public partial class UserImage
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ImageId { get; set; }
-
         public int Id { get; set; }
 
         [Column(TypeName = "image")]
@@ -20,10 +17,9 @@ namespace WisT.DemoWeb.Persistence.DataEntities
         public UserImage()
         {
         }
+
         public UserImage(IFaceImage faceImage)
         {
-            Id = faceImage.Id.IdentifingCode;
-
             MemoryStream memoryStream = new MemoryStream();
             faceImage.ImageOfFace.Save(memoryStream, ImageFormat.Bmp);
             byte[] image = memoryStream.ToArray();
@@ -31,7 +27,6 @@ namespace WisT.DemoWeb.Persistence.DataEntities
             Image = image;
         }
 
-        [ForeignKey("Id")]
-        public virtual User User { get; set; }
+        public User User { get; set; }
     }
 }

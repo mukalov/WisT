@@ -13,7 +13,6 @@ namespace WisT.DemoWeb.Persistence.DataEntities
             UserImages = new HashSet<UserImage>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [StringLength(50)]
@@ -26,7 +25,6 @@ namespace WisT.DemoWeb.Persistence.DataEntities
             UserImages = new HashSet<UserImage>();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserImage> UserImages { get; set; }
     }
 }

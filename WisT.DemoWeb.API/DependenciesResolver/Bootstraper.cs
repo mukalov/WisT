@@ -10,7 +10,6 @@ namespace WisT.DemoWeb.API.DependenciesResolver
         public static void RegisterWisTDependencies(IServiceCollection services)
         {
             services.AddTransient<ILabelStorage, LabelStorage>();
-            services.AddTransient<IImageStorage, ImageStorage>();
             services.AddTransient<IRegistrationService, RegistrationService>();
             services.AddTransient<ILoginService, LoginService>();
         }

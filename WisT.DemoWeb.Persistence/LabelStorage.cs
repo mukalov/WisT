@@ -17,6 +17,10 @@ namespace WisT.DemoWeb.Persistence.Control
                 User user = new User(addObj);
 
                 context.Users.Add(user);
+
+                foreach (var image in addObj.Images)
+                    user.UserImages.Add(new UserImage(image));
+
                 try
                 {
                     context.SaveChanges();
@@ -29,10 +33,12 @@ namespace WisT.DemoWeb.Persistence.Control
                 addObj.Id = new Identifier(user.Id);
             }
         }
+
         public void Delete(IIdentifier id)
         {
             throw new NotImplementedException();
         }
+
         public ILabel Get(IIdentifier id)
         {
             using (WisTEntities context = new WisTEntities())
@@ -53,25 +59,12 @@ namespace WisT.DemoWeb.Persistence.Control
                 return new DatabaseLabel(user);
             }
         }
+
         public IEnumerable<ILabel> GetAll()
         {
             using (WisTEntities context = new WisTEntities())
             {
-                List<ILabel> labels = new List<ILabel>();
-                List<User> users = new List<User>();
-
-                try
-                {
-                    users = context.Users.ToList();
-                }
-                catch
-                {
-                    throw new NoStoredLabelsException();
-                }
-
-                labels = (List<ILabel>)users.Select(x => new DatabaseLabel(x));
-
-                return labels;
+                return context.Users.ToList().Select(x => new DatabaseLabel(x)).ToList();
             }
         }
     }

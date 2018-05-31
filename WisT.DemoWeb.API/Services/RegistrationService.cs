@@ -13,13 +13,11 @@ namespace WisT.DemoWeb.API.Services
     public class RegistrationService : IRegistrationService
     {
         private IConfiguration _configuration;
-        private IImageStorage _imgRepo;
         private ILabelStorage _labelRepo;
 
-        public RegistrationService(IConfiguration configuration, IImageStorage imgRepo, ILabelStorage labelRepo)
+        public RegistrationService(IConfiguration configuration, ILabelStorage labelRepo)
         {
             _configuration = configuration;
-            _imgRepo = imgRepo;
             _labelRepo = labelRepo;
         }
 
@@ -33,7 +31,6 @@ namespace WisT.DemoWeb.API.Services
 
             var images = new List<FaceImage>();
             var login = new Label(userInfo.Login);
-            _labelRepo.Add(login);
 
             try
             {
@@ -43,9 +40,10 @@ namespace WisT.DemoWeb.API.Services
                     {
                         await onePhoto.CopyToAsync(memoryStream);
                         var image = new Bitmap(Image.FromStream(memoryStream));
-                        images.Add(new FaceImage(image, pathToHaar, login.Id));
+                        login.AddImage(new FaceImage(image, pathToHaar));
                     }
                 }
+                _labelRepo.Add(login);
             }
             catch (UndetectedFaceException)
             {
@@ -53,7 +51,7 @@ namespace WisT.DemoWeb.API.Services
             }
 
 
-            _imgRepo.Add(images);
+     //       _imgRepo.Add(images);
 
             return response;
         }

@@ -72,7 +72,9 @@ export default class Register extends React.Component {
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
                 <h1 className="response">Message: {this.state.message}</h1>
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
-                <button className="send" onClick={this.send} disabled={this.state.isDisabled}>Create an account</button>
+                <div className="temp1">
+                    <button className="send" onClick={this.send} disabled={this.state.isDisabled}>Create an account</button>
+                </div>
             </div>
         );
     }

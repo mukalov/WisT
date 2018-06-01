@@ -47,8 +47,6 @@ namespace WisT.Recognizer.Identifier
         {
             Image<Gray, Byte> detectionImage = new Image<Gray, Byte>(img);
 
-            String str = Directory.GetCurrentDirectory();
-
             CascadeClassifier _cascadeClassifier = new CascadeClassifier(path_haar);
             var Face = _cascadeClassifier.DetectMultiScale(detectionImage);
 

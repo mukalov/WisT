@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -14,23 +15,23 @@ namespace WisT.DemoWeb.API.Services
     {
         private IConfiguration _configuration;
         private ILabelStorage _labelRepo;
+        private IHostingEnvironment _hostingEnvironemnt;
 
-        public LoginService(IConfiguration configuration, ILabelStorage labelRepo)
+        public LoginService(IConfiguration configuration, ILabelStorage labelRepo, IHostingEnvironment hostingEnvironemnt)
         {
             _configuration = configuration;
             _labelRepo = labelRepo;
+            _hostingEnvironemnt = hostingEnvironemnt;
         }
 
         public async Task<WisTResponse> CheckAsync(LoginInfo userInfo)
         {
             WisTResponse response;
-
-            string prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             var detectConfig = _configuration["FaceClassifierPath"];
             var recognizeConfig = _configuration["TransistRateCoefficient"];
-
+            var rootPath = _hostingEnvironemnt.ContentRootPath;
             var transistRateCoefficient = double.Parse(recognizeConfig, new NumberFormatInfo { NumberDecimalSeparator = "." });
-            var pathToHaar = string.Concat(prjPath, detectConfig);
+            var pathToHaar = Path.Combine(rootPath, detectConfig);
 
             Bitmap image;
             using (var memoryStream = new MemoryStream())

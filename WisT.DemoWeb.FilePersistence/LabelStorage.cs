@@ -12,17 +12,19 @@ namespace WisT.DemoWeb.FilePersistence
         private string _rootPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
         private string _clientsPath;
         private string _imagesPath;
-        private const string _labelPath = @"\Repo\Labels";
-        private const string _repoPath = @"\Repo";
-        private const string _photoesPath = @"\Repo\Images";
+        private IRootDirectoryProvider _rootDirectoryProvider;
+        private const string _labelPath = @"Repo\Labels";
+        private const string _repoPath = @"Repo";
+        private const string _photoesPath = @"Repo\Images";
         private static int _numOfPhotoes = 1;
-
+        
         public static ILabel CurrentClient;
 
-        public LabelStorage()
+        public LabelStorage(IRootDirectoryProvider rootDirectoryProvider)
         {
-            _clientsPath = _rootPath + _labelPath;
-            _imagesPath = _rootPath + _photoesPath;
+            _rootDirectoryProvider = rootDirectoryProvider;
+            _clientsPath = Path.Combine(_rootDirectoryProvider.RootDirectory, _labelPath);
+            _imagesPath = Path.Combine(_rootDirectoryProvider.RootDirectory, _photoesPath);
             ConfigureRepo();
         }
 
@@ -31,7 +33,7 @@ namespace WisT.DemoWeb.FilePersistence
             CurrentClient = addObj;
             CurrentClient.Id = new Identifier(CreateId(addObj.Name));
             string filePath = _clientsPath + @"\$" + CreateId(addObj.Name) + @".txt";
-            File.Create(filePath).Dispose(); ;
+            File.Create(filePath).Dispose();
             using (TextWriter tw = new StreamWriter(filePath))
             {
                 tw.Write(addObj.Name);

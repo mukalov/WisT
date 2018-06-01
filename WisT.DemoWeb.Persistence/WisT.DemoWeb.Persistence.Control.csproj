@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <AssemblyName>WisT.DemoWeb.Persistence.Control</AssemblyName>
+    <RootNamespace>WisT.DemoWeb.Persistence.Control</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Recognizer\Wist.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj" />
+    <ProjectReference Include="..\Recognizer\Wist.Recognizer\WisT.Recognizer.Identifier.csproj" />
+    <ProjectReference Include="..\WisT.DemoWeb.Persistence.Entities\WisT.DemoWeb.Persistence.DataEntities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+  </ItemGroup>
+
+</Project>

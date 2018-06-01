@@ -18,14 +18,28 @@ namespace WisT.Recognizer.Identifier
             ImageOfFace = img;
         }
 
+        public FaceImage(byte[] imageBytes, IIdentifier id)
+        {
+            using (var memoryStream = new MemoryStream(imageBytes))
+            {
+                ImageOfFace = new Bitmap(Image.FromStream(memoryStream));
+            }
+            Id = id;
+        }
+
         public FaceImage(Bitmap img, IIdentifier Id)
         {
             ImageOfFace = img;
             this.Id = Id;
         }
 
+        public FaceImage(Bitmap img, string path_haar, IIdentifier id)
+        {
+            ImageOfFace = new Bitmap(DetectFace(img, path_haar), new Size(_faceHeight, _faceWeight));
+            Id = id;
+        }
         public FaceImage(Bitmap img, string path_haar)
-        {        
+        {
             ImageOfFace = new Bitmap(DetectFace(img, path_haar), new Size(_faceHeight, _faceWeight));
         }
 
@@ -35,10 +49,10 @@ namespace WisT.Recognizer.Identifier
 
             String str = Directory.GetCurrentDirectory();
 
-            CascadeClassifier  _cascadeClassifier = new CascadeClassifier(path_haar);
+            CascadeClassifier _cascadeClassifier = new CascadeClassifier(path_haar);
             var Face = _cascadeClassifier.DetectMultiScale(detectionImage);
 
-            if (Face.Length == 0) 
+            if (Face.Length == 0)
             {
                 throw new UndetectedFaceException();
             }

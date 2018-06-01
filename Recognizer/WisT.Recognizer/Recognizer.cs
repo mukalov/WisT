@@ -22,15 +22,13 @@ namespace WisT.Recognizer.Identifier
 
         private const double _requiredDistance = 70;
 
-        public Recognizer(IImageStorage imgRepo, ILabelStorage labelRepo)
+        public Recognizer(ILabelStorage labelRepo)
         {
-            _imgRepo = imgRepo;
             _labelRepo = labelRepo;
         }
 
-        public Recognizer(IImageStorage imgRepo, ILabelStorage labelRepo, double transistRateCoefficient)
+        public Recognizer(ILabelStorage labelRepo, double transistRateCoefficient)
         {
-            _imgRepo = imgRepo;
             _labelRepo = labelRepo;
             _transistRateCoefficient = transistRateCoefficient;
         }
@@ -42,7 +40,7 @@ namespace WisT.Recognizer.Identifier
             var labels = _labelRepo.GetAll();
             foreach (var label in labels)
             {
-                IEnumerable<IFaceImage> batch = _imgRepo.Get(label.Id);
+                IEnumerable<IFaceImage> batch = label.Images;
                 List<Image<Gray, Byte>> compBatch = new List<Image<Gray, Byte>>();
                 List<int> trainingLabels = new List<int>();
 
@@ -65,7 +63,7 @@ namespace WisT.Recognizer.Identifier
                 if (result.Distance < _minDistanse)
                 {
                     _minDistanse = result.Distance;
-                    answ = currentId;
+                    answ = label.Id;
                 }
             }
 
@@ -82,7 +80,6 @@ namespace WisT.Recognizer.Identifier
                 return new Identifier(-1);
         }
 
-        private IImageStorage _imgRepo;
         private ILabelStorage _labelRepo;
     }
 }

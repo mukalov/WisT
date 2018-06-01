@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb", "WisT.DemoWeb\WisT.DemoWeb.csproj", "{2A34AF73-1CD4-42BE-AA01-B6326C923D97}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.API", "WisT.DemoWeb.API\WisT.DemoWeb.API.csproj", "{3C5256B4-3BD4-4279-88B9-41AB32D06503}"
+	ProjectSection(ProjectDependencies) = postProject
+		{86BE0104-72F1-4EF6-81B3-EAE45E9A61D3} = {86BE0104-72F1-4EF6-81B3-EAE45E9A61D3}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WisT.DemoWeb.Persistence.Control", "WisT.DemoWeb.Persistence\WisT.DemoWeb.Persistence.Control.csproj", "{657F6DED-146F-4054-8E1C-2CA0E9A77504}"
 EndProject

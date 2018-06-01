@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WisT.Recognizer.Contracts;
 
 namespace WisT.Recognizer.Identifier
@@ -6,6 +7,7 @@ namespace WisT.Recognizer.Identifier
     public class Label : ILabel
     {
         private IIdentifier _id;
+        private IList<IFaceImage> _images = new List<IFaceImage>();
 
         public string Name { get; set; }
         public IIdentifier Id
@@ -23,6 +25,8 @@ namespace WisT.Recognizer.Identifier
             }
         }
 
+        public IEnumerable<IFaceImage> Images { get { return _images; } }
+
         public Label(string Name)
         {
             this.Name = Name;
@@ -32,6 +36,11 @@ namespace WisT.Recognizer.Identifier
         {
             this.Name = Name; 
             _id = Id;
+        }
+
+        public void AddImage(IFaceImage image)
+        {
+            _images.Add(image);
         }
     }
 }

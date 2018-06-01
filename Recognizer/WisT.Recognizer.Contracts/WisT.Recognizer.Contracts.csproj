@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="IFaceImage.cs" />
     <Compile Include="IIdentifier.cs" />
-    <Compile Include="IImageStorage.cs" />
     <Compile Include="ILabel.cs" />
     <Compile Include="ILabelStorage.cs" />
     <Compile Include="IRecognizer.cs" />

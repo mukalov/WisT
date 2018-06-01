@@ -7,11 +7,14 @@ namespace WisT.Recognizer.Identifier
     {
         public int IdentifingCode { get; }
 
-        public Identifier(int IdentifingCode)
+        public Identifier(int identifier)
         {
-            this.IdentifingCode = IdentifingCode;
+            IdentifingCode = identifier;
         }
-
+        public Identifier(string identifier)
+        {
+            IdentifingCode = identifier.GetHashCode();
+        }
         public override bool Equals(Object obj)
         {
             if (obj == null)

@@ -49,7 +49,7 @@ export default class Register extends React.Component {
         axios.post('api/Registration', data)
             .then((response) => {
                 if (response.status == 200) {
-                    wisTMessage = "You are registrated.";
+                    wisTMessage = "You are registered.";
                     this.setState({ isDisabled: false });
                 }
                 this.setState({ message: wisTMessage });
@@ -70,9 +70,11 @@ export default class Register extends React.Component {
             <div className="registr">
                 <LoginField onUpdate={this.onLoginUpdate} />
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
-                <h1 className="response">Message: {this.state.message}</h1>
+                <h1 className="response">{this.state.message}</h1>
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
-                <button className="send" onClick={this.send} disabled={this.state.isDisabled}>Create an account</button>
+                <div className="temp1">
+                    <button className="send" onClick={this.send} disabled={this.state.isDisabled}>Create an account</button>
+                </div>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
@@ -31,7 +32,7 @@ namespace WisT.DemoWeb.API.Services
             var detectConfig = _configuration["FaceClassifierPath"];
             var recognizeConfig = _configuration["TransistRateCoefficient"];
 
-            var transistRateCoefficient = double.Parse(recognizeConfig);
+            var transistRateCoefficient = double.Parse(recognizeConfig, new NumberFormatInfo { NumberDecimalSeparator = "." });
             var pathToHaar = string.Concat(prjPath, detectConfig);
 
             Bitmap image;

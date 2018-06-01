@@ -9,14 +9,15 @@ namespace WisT.DemoWeb.FilePersistence
 {
     public class ImageStorage : IImageStorage
     {
-        private string _prjPath;
+        private string _projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
         private string _imagesPath;
+        private const string _repoPath = @"\WisT.DemoWeb.FilePersistence\Repo";
         private static int _numOfPhotoes = 1;
 
         public ImageStorage()
         {
-            _prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
-            _imagesPath = _prjPath + @"\WisT.DemoWeb.FilePersistence\Repo\Images";
+            _imagesPath = _projectPath + _repoPath + @"\Images";
+            ConfigureRepo();
         }
 
         public void Add(IEnumerable<IFaceImage> addObj)
@@ -45,6 +46,12 @@ namespace WisT.DemoWeb.FilePersistence
                 batch.Add(currentImage);
             }
             return batch;
+        }
+
+        private void ConfigureRepo()
+        {
+            Directory.CreateDirectory(_repoPath);
+            Directory.CreateDirectory(_imagesPath);
         }
     }
 }

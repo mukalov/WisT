@@ -8,15 +8,16 @@ namespace WisT.DemoWeb.FilePersistence
 {
     public class LabelStorage : ILabelStorage
     {
-        private string _projectPath;
+        private string _projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
         private string _clientsPath;
-
+        private const string _labelPath = @"\WisT.DemoWeb.FilePersistence\Repo\Labels";
+        private const string _repoPath = @"\WisT.DemoWeb.FilePersistence\Repo";
         public static ILabel CurrentClient;
 
         public LabelStorage()
         {
-            _projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
-            _clientsPath = _projectPath + @"\WisT.DemoWeb.FilePersistence\Repo\Labels";
+            _clientsPath = _projectPath + _labelPath;
+            ConfigureRepo();
         }
 
         public void Add(ILabel addObj)
@@ -95,6 +96,12 @@ namespace WisT.DemoWeb.FilePersistence
             char[] charArray = answ.ToCharArray();
             Array.Reverse(charArray);
             return int.Parse(new string(charArray));
+        }
+
+        private void ConfigureRepo()
+        {
+            Directory.CreateDirectory(_repoPath);
+            Directory.CreateDirectory(_clientsPath);
         }
     }
 }

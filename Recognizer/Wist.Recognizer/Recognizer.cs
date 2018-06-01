@@ -45,12 +45,10 @@ namespace WisT.Recognizer.Identifier
                 List<int> trainingLabels = new List<int>();
 
                 int enumerator = 0;
-                IIdentifier currentId = new Identifier(0);
                 foreach (var current in batch)
                 {
                     compBatch.Add(new Image<Gray, Byte>(current.ImageOfFace));
                     trainingLabels.Add(enumerator++);
-                    currentId = current.Id;
                 }
 
                 FaceRecognizer recognizer = new LBPHFaceRecognizer(_recognizerRadius, _recognizerNeighbors,

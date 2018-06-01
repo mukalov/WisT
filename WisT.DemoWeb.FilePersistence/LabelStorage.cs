@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using WisT.Recognizer.Contracts;
 using WisT.Recognizer.Identifier;
@@ -8,15 +9,20 @@ namespace WisT.DemoWeb.FilePersistence
 {
     public class LabelStorage : ILabelStorage
     {
-        private string _projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+        private string _rootPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
         private string _clientsPath;
-        private const string _labelPath = @"\WisT.DemoWeb.FilePersistence\Repo\Labels";
-        private const string _repoPath = @"\WisT.DemoWeb.FilePersistence\Repo";
+        private string _imagesPath;
+        private const string _labelPath = @"\Repo\Labels";
+        private const string _repoPath = @"\Repo";
+        private const string _photoesPath = @"\Repo\Images";
+        private static int _numOfPhotoes = 1;
+
         public static ILabel CurrentClient;
 
         public LabelStorage()
         {
-            _clientsPath = _projectPath + _labelPath;
+            _clientsPath = _rootPath + _labelPath;
+            _imagesPath = _rootPath + _photoesPath;
             ConfigureRepo();
         }
 
@@ -30,6 +36,14 @@ namespace WisT.DemoWeb.FilePersistence
             {
                 tw.Write(addObj.Name);
                 tw.Close();
+            }
+
+            int photoCounter = 0;
+            foreach (var obj in addObj.Images)
+            {
+                string pathToCurrent = _imagesPath + @"\" + (photoCounter++).ToString() + "$" + CurrentClient.Id.IdentifingCode.ToString() + ".bmp";
+                var currentImg = new FaceImage(obj.ImageOfFace);
+                currentImg.ImageOfFace.Save(pathToCurrent);
             }
         }
 
@@ -46,25 +60,28 @@ namespace WisT.DemoWeb.FilePersistence
             {
                  name = tr.ReadLine();
             }
-            return new Label(name, id);
+            Label response = new Label(name, id);
+            for (int photoCounter = 0; photoCounter < _numOfPhotoes; photoCounter++)
+            {
+                string currrentPath = _imagesPath + @"\" + photoCounter.ToString() + "$" + id.IdentifingCode.ToString() + ".bmp";
+                FaceImage currentImage = new FaceImage(new Bitmap(currrentPath)) { Id = id };
+                response.AddImage(currentImage);
+            }
+            return response;
         }
 
         public IEnumerable<ILabel> GetAll()
         {
             string[] labelFiles = Directory.GetFiles(_clientsPath);
-            List<Label> allLabels = new List<Label>();
+            List<ILabel> allLabels = new List<ILabel>();
 
             foreach(var labelFile in labelFiles)
             {
                 int currentId = IdParser(labelFile);
-          
-                string currentName;
 
-                using (TextReader tr = new StreamReader(labelFile))
-                {
-                    currentName = tr.ReadLine();
-                }
-                allLabels.Add(new Label(currentName, new Identifier(currentId)));
+                var currentLabel = Get(new Identifier(currentId));
+
+                allLabels.Add(currentLabel);
             }
 
             return allLabels;
@@ -102,6 +119,7 @@ namespace WisT.DemoWeb.FilePersistence
         {
             Directory.CreateDirectory(_repoPath);
             Directory.CreateDirectory(_clientsPath);
+            Directory.CreateDirectory(_imagesPath);
         }
     }
 }

@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageStorage.cs" />
     <Compile Include="LabelStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Recognizer\Wist.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj">
@@ -54,9 +56,6 @@
       <Project>{b0490b4f-efa7-4662-a73e-27afc5a04e85}</Project>
       <Name>WisT.Recognizer.Identifier</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

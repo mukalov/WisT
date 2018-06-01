@@ -13,7 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Recognizer\Wist.Recognizer.Contracts\WisT.Recognizer.Contracts.csproj" />
     <ProjectReference Include="..\Recognizer\Wist.Recognizer\WisT.Recognizer.Identifier.csproj" />
-    <ProjectReference Include="..\WisT.DemoWeb.Persistence\WisT.DemoWeb.Persistence.Control.csproj" />
+    <ProjectReference Include="..\WisT.DemoWeb.FilePersistence\WisT.DemoWeb.FilePersistence.csproj" />
   </ItemGroup>
 
 </Project>

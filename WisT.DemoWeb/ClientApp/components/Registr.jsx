@@ -14,7 +14,7 @@ export default class Register extends React.Component {
             photoArray: Array(1).fill(new Blob()),
             photoSrc: '',
             message: 'Take photo input your login and send to register.',
-            isDisabled:false
+            isDisabled: true
         };
     }
 
@@ -22,6 +22,9 @@ export default class Register extends React.Component {
         this.setState({
             login: val
         })
+        if (val != " " && this.state.photoData) {
+            this.setState({ isDisabled: false });
+        }
     };
 
     onPhotoUpdate = (imageSrc) => {
@@ -29,15 +32,17 @@ export default class Register extends React.Component {
         this.setState({
             photoData: imageSrc[0],
             photoArray: imageSrc,
-            photoSrc: window.URL.createObjectURL(imageSrc[0]),
+            photoSrc: window.URL.createObjectURL(imageSrc[0])
         });
-        console.log(this.state.photoArray);
+        if (this.state.login != "") {
+            isDisabled: false
+        }
     }
 
     send = () => {
-         this.setState({ isDisabled: true });
-         let data = new FormData();
-        console.log(this.state.photoArray);
+        this.setState({ isDisabled: true });
+        let data = new FormData();
+
         for (let i = 0; i < this.state.photoArray.length; i++) {
             data.append('Photoes', this.state.photoArray[i]);
         }
@@ -48,19 +53,21 @@ export default class Register extends React.Component {
 
         axios.post('api/Registration', data)
             .then((response) => {
-                if (response.status == 200) {
+                if (response.status == 200)
                     wisTMessage = "You are registered.";
-                    this.setState({ isDisabled: false });
-                }
-                this.setState({ message: wisTMessage });
+                this.setState({
+                    message: wisTMessage,
+                    isDisabled: false
+                });
             })
             .catch((error) => {
                 if (error.response) {
-                    if (error.response.status == 400) {
+                    if (error.response.status == 400)
                         wisTMessage = "This photo is bad, I don't see you.";
-                        this.setState({ isDisabled: false });
-                    }
-                    this.setState({ message: wisTMessage });
+                    this.setState({
+                        message: wisTMessage,
+                        isDisabled: false
+                    });
                 }
             });
     }

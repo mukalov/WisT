@@ -15,7 +15,7 @@ namespace WisT.Recognizer.Identifier
             get
             {
                 if (_id == null)
-                    throw new Exception("Id is not initialized");
+                    return new Identifier(-1);
                 else
                     return _id;
             }

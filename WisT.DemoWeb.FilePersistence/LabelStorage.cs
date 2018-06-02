@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using WisT.Recognizer.Contracts;
 using WisT.Recognizer.Identifier;
@@ -8,15 +9,23 @@ namespace WisT.DemoWeb.FilePersistence
 {
     public class LabelStorage : ILabelStorage
     {
-        private string _projectPath;
+        private string _rootPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
         private string _clientsPath;
-
+        private string _imagesPath;
+        private IRootDirectoryProvider _rootDirectoryProvider;
+        private const string _labelPath = @"Repo\Labels";
+        private const string _repoPath = @"Repo";
+        private const string _photoesPath = @"Repo\Images";
+        private static int _numOfPhotoes = 1;
+        
         public static ILabel CurrentClient;
 
-        public LabelStorage()
+        public LabelStorage(IRootDirectoryProvider rootDirectoryProvider)
         {
-            _projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
-            _clientsPath = _projectPath + @"\WisT.DemoWeb.FilePersistence\Repo\Labels";
+            _rootDirectoryProvider = rootDirectoryProvider;
+            _clientsPath = Path.Combine(_rootDirectoryProvider.RootDirectory, _labelPath);
+            _imagesPath = Path.Combine(_rootDirectoryProvider.RootDirectory, _photoesPath);
+            ConfigureRepo();
         }
 
         public void Add(ILabel addObj)
@@ -24,11 +33,19 @@ namespace WisT.DemoWeb.FilePersistence
             CurrentClient = addObj;
             CurrentClient.Id = new Identifier(CreateId(addObj.Name));
             string filePath = _clientsPath + @"\$" + CreateId(addObj.Name) + @".txt";
-            File.Create(filePath).Dispose(); ;
+            File.Create(filePath).Dispose();
             using (TextWriter tw = new StreamWriter(filePath))
             {
                 tw.Write(addObj.Name);
                 tw.Close();
+            }
+
+            int photoCounter = 0;
+            foreach (var obj in addObj.Images)
+            {
+                string pathToCurrent = _imagesPath + @"\" + (photoCounter++).ToString() + "$" + CurrentClient.Id.IdentifingCode.ToString() + ".bmp";
+                var currentImg = new FaceImage(obj.ImageOfFace);
+                currentImg.ImageOfFace.Save(pathToCurrent);
             }
         }
 
@@ -45,25 +62,28 @@ namespace WisT.DemoWeb.FilePersistence
             {
                  name = tr.ReadLine();
             }
-            return new Label(name, id);
+            Label response = new Label(name, id);
+            for (int photoCounter = 0; photoCounter < _numOfPhotoes; photoCounter++)
+            {
+                string currrentPath = _imagesPath + @"\" + photoCounter.ToString() + "$" + id.IdentifingCode.ToString() + ".bmp";
+                FaceImage currentImage = new FaceImage(new Bitmap(currrentPath)) { Id = id };
+                response.AddImage(currentImage);
+            }
+            return response;
         }
 
         public IEnumerable<ILabel> GetAll()
         {
             string[] labelFiles = Directory.GetFiles(_clientsPath);
-            List<Label> allLabels = new List<Label>();
+            List<ILabel> allLabels = new List<ILabel>();
 
             foreach(var labelFile in labelFiles)
             {
                 int currentId = IdParser(labelFile);
-          
-                string currentName;
 
-                using (TextReader tr = new StreamReader(labelFile))
-                {
-                    currentName = tr.ReadLine();
-                }
-                allLabels.Add(new Label(currentName, new Identifier(currentId)));
+                var currentLabel = Get(new Identifier(currentId));
+
+                allLabels.Add(currentLabel);
             }
 
             return allLabels;
@@ -95,6 +115,13 @@ namespace WisT.DemoWeb.FilePersistence
             char[] charArray = answ.ToCharArray();
             Array.Reverse(charArray);
             return int.Parse(new string(charArray));
+        }
+
+        private void ConfigureRepo()
+        {
+            Directory.CreateDirectory(_repoPath);
+            Directory.CreateDirectory(_clientsPath);
+            Directory.CreateDirectory(_imagesPath);
         }
     }
 }

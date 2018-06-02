@@ -19,15 +19,19 @@ export default class WebcamComponent extends React.Component {
     render() {
         return (
             <div className="camera">
-                < Webcam
-                    audio={false}
-                    screenshotFormat="image/jpeg"
-                    ref={this.setRef}
-                    height={400}
-                    weight={400}
-                />
+                <div className="temp">
+                    < Webcam
+                        audio={false}
+                        screenshotFormat="image/jpeg"
+                        ref={this.setRef}
+                        height={600}
+                        weight={600}
+                    />
+                </div>
                 <br></br>
-                <button id="take" onClick={this.capture}>Take photo</button>
+                <div className="temp1">
+                    <button className="take" onClick={this.capture}>Take photo</button>
+                </div>
             </div>
         );
     }

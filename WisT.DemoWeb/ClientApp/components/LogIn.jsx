@@ -10,14 +10,15 @@ export default class LogIn extends React.Component {
             photoData: new Blob(),
             photoSrc: '',
             message: 'Take photo and send to login.',
-            isDisabled: false
+            isDisabled: true
         };
     }
 
     onPhotoUpdate = (imageSrc) => {
         this.setState({
             photoData: imageSrc,
-            photoSrc: window.URL.createObjectURL(imageSrc)
+            photoSrc: window.URL.createObjectURL(imageSrc),
+            isDisabled: false
         });
     }
 
@@ -25,30 +26,27 @@ export default class LogIn extends React.Component {
         this.setState({ isDisabled: true });
         let data = new FormData();
         data.append('Photo', this.state.photoData);
-
-        let wisTMessage = "Please wait.";
-        this.setState({ message: wisTMessage });
-
+        let wisTMessage;
         axios.post('api/Login', data)
             .then((response) => {
-                if (response.status == 200) {
+                if (response.status == 200)
                     wisTMessage = "Welcome, " + response.data + ".";
-                    this.setState({ isDisabled: false });
-                }
-                this.setState({ message: wisTMessage });
+                this.setState({
+                    message: wisTMessage,
+                    isDisabled: false
+                });
                 console.log(response);
             })
             .catch((error) => {
                 if (error.response) {
-                    if (error.response.status == 400) {
+                    if (error.response.status == 400)
                         wisTMessage = "This photo is bad, I don't see you.";
-                        this.setState({ isDisabled: false });
-                    }
-                    if (error.response.status == 404) {
-                        wisTMessage = "You are not recognized.";
-                        this.setState({ isDisabled: false });
-                    }
-                    this.setState({ message: wisTMessage });
+                    if (error.response.status == 404)
+                        wisTMessage = "You are not registered.";
+                    this.setState({
+                        message: wisTMessage,
+                        isDisabled: false
+                    });
                 }
             });
     }

@@ -28,8 +28,10 @@ export default class LogIn extends React.Component {
         let wisTMessage;
         axios.post('api/Login', data)
             .then((response) => {
-                if (response.status == 200)
+                if (response.status == 200) {
                     wisTMessage = "Welcome, " + response.data + ".";
+                    this.setState({ isDisabled: false });
+                }
                 this.setState({ message: wisTMessage });
                 console.log(response);
             })

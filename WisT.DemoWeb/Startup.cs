@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using WisT.DemoWeb.API.DependenciesResolver;
+using WisT.DemoWeb.API.Infrastructure;
 
 namespace WisT.DemoWeb
 {
@@ -19,13 +21,16 @@ namespace WisT.DemoWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(typeof(ExceptionFilter));
+            });
             services.AddSingleton<IConfiguration>(Configuration);
             Bootstraper.RegisterWisTDependencies(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logging)
         {
             if (env.IsDevelopment())
             {
@@ -40,6 +45,10 @@ namespace WisT.DemoWeb
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            logging.AddConsole(Configuration.GetSection("Logging"));
+            logging.AddDebug();
+            logging.AddAzureWebAppDiagnostics();
 
             app.UseStaticFiles();
 

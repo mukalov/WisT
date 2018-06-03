@@ -51,8 +51,6 @@ export default class Register extends React.Component {
         }
         data.append('Login', this.state.login);
 
-        let wisTMessage;
-
         axios.post('api/Registration', data)
             .then((response) => {
                 if (response.status == 200)

@@ -10,6 +10,8 @@ export default class Register extends React.Component {
         super(props);
         this.state = {
             login: '',
+            photoData: new Blob(),
+            photoArray: Array(1).fill(new Blob()),
             photoSrc: '',
             message: 'Take photo input your login and send to register.',
             isDisabled: true

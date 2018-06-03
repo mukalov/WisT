@@ -141,3 +141,7 @@
     width: 50px;
     margin: 0 auto;
 }
+
+.take:disabled {
+    opacity: 0.5;
+}

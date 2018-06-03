@@ -40,16 +40,18 @@ export default class Register extends React.Component {
     }
 
     send = () => {
-        this.setState({ isDisabled: true });
-        let data = new FormData();
 
+        let wisTMessage = "Please wait.";
+        this.setState({
+            isDisabled: true,
+            message: wisTMessage
+        });
+
+        let data = new FormData();
         for (let i = 0; i < this.state.photoArray.length; i++) {
             data.append('Photoes', this.state.photoArray[i]);
         }
-
         data.append('Login', this.state.login);
-
-        let wisTMessage;
 
         axios.post('api/Registration', data)
             .then((response) => {

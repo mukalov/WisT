@@ -25,7 +25,10 @@ export default class LogIn extends React.Component {
         this.setState({ isDisabled: true });
         let data = new FormData();
         data.append('Photo', this.state.photoData);
-        let wisTMessage;
+
+        let wisTMessage = "Please wait.";
+        this.setState({ message: wisTMessage });
+
         axios.post('api/Login', data)
             .then((response) => {
                 if (response.status == 200) {
@@ -42,7 +45,7 @@ export default class LogIn extends React.Component {
                         this.setState({ isDisabled: false });
                     }
                     if (error.response.status == 404) {
-                        wisTMessage = "You are not registered.";
+                        wisTMessage = "You are not recognized.";
                         this.setState({ isDisabled: false });
                     }
                     this.setState({ message: wisTMessage });

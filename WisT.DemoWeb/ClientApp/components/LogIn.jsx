@@ -46,7 +46,7 @@ export default class LogIn extends React.Component {
             .catch((error) => {
                 if (error.response) {
                     if (error.response.status == 400)
-                        wisTMessage = "This photo is bad, I don't see you.";
+                        wisTMessage = "This photo is bad, I can't see you.";
                     if (error.response.status == 404)
                         wisTMessage = "You are not recognized.";
                     this.setState({

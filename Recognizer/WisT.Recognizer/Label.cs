@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 using WisT.Recognizer.Contracts;
 
@@ -25,7 +25,7 @@ namespace WisT.Recognizer.Identifier
             }
         }
 
-        public IEnumerable<IFaceImage> Images { get { return _images; } }
+        public IEnumerable<IFaceImage> Images { get { return _images; } set { _images = value.ToList(); } }
 
         public Label(string Name)
         {

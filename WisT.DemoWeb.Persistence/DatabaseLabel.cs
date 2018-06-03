@@ -12,7 +12,7 @@ namespace WisT.DemoWeb.Persistence.Control
 
         public string Name { get; set; }
 
-        public IEnumerable<IFaceImage> Images { get; private set; }
+        public IEnumerable<IFaceImage> Images { get; set; }
 
         public DatabaseLabel(User user)
         {

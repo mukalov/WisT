@@ -63,7 +63,9 @@ export default class Register extends React.Component {
             .catch((error) => {
                 if (error.response) {
                     if (error.response.status == 400)
-                        wisTMessage = "This photo is bad, I don't see you.";
+                        wisTMessage = "This photo is bad, I can't see you.";
+                    if (error.response.status == 409)
+                        wisTMessage = "You are already registered.";
                     this.setState({
                         message: wisTMessage,
                         isDisabled: false

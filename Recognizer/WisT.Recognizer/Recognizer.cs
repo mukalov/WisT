@@ -11,7 +11,7 @@ namespace WisT.Recognizer.Identifier
     public class Recognizer : IRecognizer
     {
         private double _minDistanse = double.PositiveInfinity;
-        private double _transistRateCoefficient = 0.7;
+        private double _requiredDistance = 70;
 
         //Recognizer settings
         private const int _recognizerRadius = 2;
@@ -20,23 +20,20 @@ namespace WisT.Recognizer.Identifier
         private const int _recognizerGridY = 8;
         private const double _recognizerThreshold = 200;
 
-        private const double _requiredDistance = 70;
-
         public Recognizer(ILabelStorage labelRepo)
         {
             _labelRepo = labelRepo;
         }
 
-        public Recognizer(ILabelStorage labelRepo, double transistRateCoefficient)
+        public Recognizer(ILabelStorage labelRepo, double requiredDistance)
         {
             _labelRepo = labelRepo;
-            _transistRateCoefficient = transistRateCoefficient;
+            _requiredDistance = requiredDistance;
         }
 
         public IIdentifier GetIdentity(IFaceImage img)
         {
             IIdentifier answ = new Identifier(int.MinValue);
-            var distanses = new List<double>();
             var labels = _labelRepo.GetAll();
             foreach (var label in labels)
             {
@@ -57,19 +54,10 @@ namespace WisT.Recognizer.Identifier
                 recognizer.Train(compBatch.ToArray(), trainingLabels.ToArray());
 
                 PredictionResult result = recognizer.Predict(new Image<Gray, Byte>(img.ImageOfFace));
-                distanses.Add(result.Distance);
                 if (result.Distance < _minDistanse)
                 {
                     _minDistanse = result.Distance;
                     answ = label.Id;
-                }
-            }
-
-            foreach (var dist in distanses)
-            {
-                if (_minDistanse > _transistRateCoefficient * dist && dist != _minDistanse)
-                {
-                    return new Identifier(-1);
                 }
             }
             if(_minDistanse < _requiredDistance)

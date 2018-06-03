@@ -2,6 +2,8 @@
 import WebcamComponent from './Webcam'
 import LoginField from './LoginField'
 import axios from 'axios'
+import { Spinner } from 'react-activity';
+import 'react-activity/dist/react-activity.css';
 
 export default class LogIn extends React.Component {
     constructor(props) {
@@ -10,7 +12,8 @@ export default class LogIn extends React.Component {
             photoData: new Blob(),
             photoSrc: '',
             message: 'Take photo and send to login.',
-            isDisabled: true
+            isDisabled: true,
+            isNeeded: false
         };
     }
 
@@ -27,7 +30,8 @@ export default class LogIn extends React.Component {
         let wisTMessage = "Please wait.";
         this.setState({
             isDisabled: true,
-            message: wisTMessage
+            message: wisTMessage,
+            isNeeded: true
         });
 
         let data = new FormData();
@@ -39,7 +43,8 @@ export default class LogIn extends React.Component {
                     wisTMessage = "Welcome, " + response.data + ".";
                 this.setState({
                     message: wisTMessage,
-                    isDisabled: false
+                    isDisabled: false,
+                    isNeeded: false
                 });
                 console.log(response);
             })
@@ -51,7 +56,8 @@ export default class LogIn extends React.Component {
                         wisTMessage = "You are not recognized.";
                     this.setState({
                         message: wisTMessage,
-                        isDisabled: false
+                        isDisabled: false,
+                        isNeeded: false
                     });
                 }
             });
@@ -62,6 +68,9 @@ export default class LogIn extends React.Component {
             <div >
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
                 <h1 className="message">{this.state.message}</h1>
+                <div className="spiner">
+                    <Spinner color="#0000cc" size={50} speed={1} animating={this.state.isNeeded} />
+                </div>
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
                 <div className="temp1">
                     <button className="send" onClick={this.send} disabled={this.state.isDisabled}>Log in</button>

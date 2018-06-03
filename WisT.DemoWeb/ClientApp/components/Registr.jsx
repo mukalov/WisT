@@ -10,8 +10,6 @@ export default class Register extends React.Component {
         super(props);
         this.state = {
             login: '',
-            photoData: new Blob(),
-            photoArray: Array(1).fill(new Blob()),
             photoSrc: '',
             message: 'Take photo input your login and send to register.',
             isDisabled: true
@@ -22,9 +20,7 @@ export default class Register extends React.Component {
         this.setState({
             login: val
         })
-        if (val != " " && this.state.photoData) {
-            this.setState({ isDisabled: false });
-        }
+        this.setState({ isDisabled: !val || val === " " || !this.state.photoData });
     };
 
     onPhotoUpdate = (imageSrc) => {
@@ -34,9 +30,7 @@ export default class Register extends React.Component {
             photoArray: imageSrc,
             photoSrc: window.URL.createObjectURL(imageSrc[0])
         });
-        if (this.state.login != "") {
-            isDisabled: false
-        }
+        this.setState({ isDisabled: !this.state.login || this.state.login === "" });
     }
 
     send = () => {

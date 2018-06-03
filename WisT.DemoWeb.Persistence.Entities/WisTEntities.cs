@@ -5,8 +5,8 @@ namespace WisT.DemoWeb.Persistence.DataEntities
 
     public partial class WisTEntities : DbContext
     {
-        public WisTEntities(string connectionString)
-            : base(connectionString)
+        public WisTEntities()
+            : base("name=WisTEntities")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<WisTEntities, Migrations.Configuration>());
         }

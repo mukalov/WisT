@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using WisT.DemoWeb.Persistence.Control.Excepsions;
 using WisT.DemoWeb.Persistence.DataEntities;
@@ -11,16 +10,9 @@ namespace WisT.DemoWeb.Persistence.Control
 {
     public class LabelStorage : ILabelStorage
     {
-        private IDbContextFactory<WisTEntities> _contextFactory;
-
-        public LabelStorage(IDbContextFactory<WisTEntities> contextFactory)
-        {
-            _contextFactory = contextFactory;
-        }
-
         public void Add(ILabel addObj)
         {
-            using (WisTEntities context = _contextFactory.Create())
+            using (WisTEntities context = new WisTEntities())
             {
                 User user = new User(addObj);
 
@@ -49,7 +41,7 @@ namespace WisT.DemoWeb.Persistence.Control
 
         public ILabel Get(IIdentifier id)
         {
-            using (WisTEntities context = _contextFactory.Create())
+            using (WisTEntities context = new WisTEntities())
             {
                 User user = new User();
 
@@ -70,7 +62,7 @@ namespace WisT.DemoWeb.Persistence.Control
 
         public IEnumerable<ILabel> GetAll()
         {
-            using (WisTEntities context = _contextFactory.Create())
+            using (WisTEntities context = new WisTEntities())
             {
                 return context.Users.ToList().Select(x => new DatabaseLabel(x)).ToList();
             }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using WisT.DemoWeb.API.DTO;
 using WisT.Recognizer.Contracts;
@@ -34,33 +35,43 @@ namespace WisT.DemoWeb.API.Services
             var transistRateCoefficient = double.Parse(recognizeConfig, new NumberFormatInfo { NumberDecimalSeparator = "." });
             var pathToHaar = Path.Combine(rootPath, detectConfig);
 
-            var images = new List<FaceImage>();
+            var images = new List<Bitmap>();
             var login = new Label(userInfo.Login);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                foreach (var onePhoto in userInfo.Photoes)
+                { 
+                    await onePhoto.CopyToAsync(memoryStream);
+                    images.Add(new Bitmap(Image.FromStream(memoryStream)));
+                }
+            }
+
 
             try
             {
-                using (var memoryStream = new MemoryStream())
+                login.Images = images.Select(x => new FaceImage(x, pathToHaar));
+
+                var recognizer = new Recognizer.Identifier.Recognizer(_labelRepo, transistRateCoefficient);
+
+                foreach (var userFace in login.Images)
                 {
-                    foreach (var onePhoto in userInfo.Photoes)
+                    IIdentifier usersId = recognizer.GetIdentity(userFace);
+                    if (usersId.IdentifingCode != -1)
                     {
-                        await onePhoto.CopyToAsync(memoryStream);
-                        var image = new Bitmap(Image.FromStream(memoryStream));
-                        login.AddImage(new FaceImage(image, pathToHaar));
+                        response = WisTResponse.AlreadyRegistered;
+                        return response;
                     }
                 }
+
                 _labelRepo.Add(login);
             }
             catch (UndetectedFaceException)
             {
                 response = WisTResponse.NotDetectedFace;
-                return response;
             }
-
-
-     //       _imgRepo.Add(images);
 
             return response;
         }
-
     }
 }

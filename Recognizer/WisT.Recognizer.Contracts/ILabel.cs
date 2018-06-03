@@ -7,6 +7,6 @@ namespace WisT.Recognizer.Contracts
         //There also can be additional information about user which will be storaged in db
         IIdentifier Id { get; set; }
         string Name { get; set; }
-        IEnumerable<IFaceImage> Images { get; }
+        IEnumerable<IFaceImage> Images { get; set; }
     }
 }

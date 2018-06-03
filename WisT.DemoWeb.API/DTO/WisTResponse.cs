@@ -6,6 +6,7 @@ namespace WisT.DemoWeb.API.DTO
     {
         enum WisTStatus
         {
+            AlreadyRegistered,
             NotDetectedFace,
             NotRegistered,
             Recognized,
@@ -16,6 +17,7 @@ namespace WisT.DemoWeb.API.DTO
 
         public string UserName;
 
+        public static WisTResponse AlreadyRegistered { get { return new WisTResponse() { _status = WisTStatus.AlreadyRegistered }; } }
         public static WisTResponse NotDetectedFace { get { return new WisTResponse() { _status = WisTStatus.NotDetectedFace }; } }
         public static WisTResponse NotRegistered { get { return new WisTResponse() { _status = WisTStatus.NotRegistered }; } }
         public static WisTResponse Recognized { get {return new WisTResponse() { _status = WisTStatus.Recognized }; } }

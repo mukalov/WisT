@@ -22,7 +22,13 @@ namespace WisT.DemoWeb.API.Controllers
             if (checkResult.Equals(WisTResponse.Registered))
                 return Ok();
             else
-                return BadRequest();
+            {
+                if (checkResult.Equals(WisTResponse.AlreadyRegistered))
+                    return Conflict();
+
+                else
+                    return BadRequest();
+            }
         }
     }
 }

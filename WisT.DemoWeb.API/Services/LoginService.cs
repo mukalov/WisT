@@ -39,7 +39,6 @@ namespace WisT.DemoWeb.API.Services
                 await userInfo.Photo.CopyToAsync(memoryStream);
                 image = new Bitmap(Image.FromStream(memoryStream));
             }
-            var _prjPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
 
             FaceImage userFace;
             try
@@ -62,6 +61,7 @@ namespace WisT.DemoWeb.API.Services
             {
                 response = WisTResponse.NotDetectedFace;
             }
+
             return response;
         }
     }

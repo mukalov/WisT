@@ -13,7 +13,7 @@ export default class Register extends React.Component {
         this.state = {
             login: '',
             photoData: null,
-            photoArray: Array(1).fill(new Blob()),
+            photoArray: Array(5).fill(new Blob()),
             photoSrc: '',
             message: 'Take photo input your login and send to register.',
             isDisabled: true,
@@ -52,9 +52,14 @@ export default class Register extends React.Component {
         });
 
         let data = new FormData();
+
+        console.log(this.state.photoArray);
+
         for (let i = 0; i < this.state.photoArray.length; i++) {
+            console.log(this.state.photoArray[i]);
             data.append('Photoes', this.state.photoArray[i]);
         }
+
         data.append('Login', this.state.login);
 
         axios.post('api/Registration', data)
@@ -83,12 +88,14 @@ export default class Register extends React.Component {
     render() {
         return (
             <div className="registr">
+               
                 <LoginField onUpdate={this.onLoginUpdate} />
                 <WebcamComponent onUpdate={this.onPhotoUpdate} />
                 <h1 className="response">{this.state.message}</h1>
                 <div className="spiner">
                     <Spinner color="#0000cc" size={50} speed={1} animating={this.state.isNeeded} />
                 </div>
+               
                 <img className="image" src={this.state.photoSrc} alt="Taken photo" />
                 <div className="temp1">
                     <button className="send" onClick={this.send} disabled={this.state.isDisabled}>Create an account</button>

@@ -10,7 +10,7 @@ export default class Register extends React.Component {
         super(props);
         this.state = {
             login: '',
-            photoData: new Blob(),
+            photoData: null,
             photoArray: Array(1).fill(new Blob()),
             photoSrc: '',
             message: 'Take photo input your login and send to register.',
@@ -26,6 +26,8 @@ export default class Register extends React.Component {
     };
 
     onPhotoUpdate = (imageSrc) => {
+
+        this.state.photoData = new Blob();
 
         this.setState({
             photoData: imageSrc[0],
